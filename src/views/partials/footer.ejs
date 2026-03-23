@@ -1,47 +1,20 @@
 <footer class="site-footer" id="footer">
     <div class="container site-container">
-        <div class="row g-5 align-items-start footer-top">
-            <div class="col-lg-5">
-                <span class="footer-badge">PRODUCT SYSTEM</span>
-                <a href="/" class="footer-logo d-inline-block">FullStats</a>
-                <p class="footer-copy">
-                    フルパの構成、ロール、マップ、直近傾向までをひとつの流れで見られる、
-                    Valorant 向けのチーム分析プロダクトです。
-                </p>
+        <div class="footer-bar">
+            <div class="footer-mark">
+                <span class="footer-badge">限定モード</span>
+                <a href="/" class="footer-logo">FullStats</a>
             </div>
-
-            <div class="col-lg-7">
-                <div class="row g-4">
-                    <div class="col-6 col-md-4">
-                        <div class="footer-column">
-                            <span class="footer-heading">Navigate</span>
-                            <a href="/">Overview</a>
-                            <a href="#modules">Modules</a>
-                            <a href="/login">Log In</a>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="footer-column">
-                            <span class="footer-heading">Insights</span>
-                            <span>Lineup Win Rate</span>
-                            <span>Role Allocation</span>
-                            <span>Map Priority</span>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="footer-column">
-                            <span class="footer-heading">Decisions</span>
-                            <span>Recent 10 Matches</span>
-                            <span>Team Momentum</span>
-                            <span>Today&apos;s Call</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="footer-links">
+                <a href="/">ホーム</a>
+                <a href="/tasks">タスク</a>
+                <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
+                    <span>オンライン</span>
+                <% } else { %>
+                    <a href="/login">ログイン</a>
+                <% } %>
             </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2026 FullStats. Designed for teams that want sharper calls.</p>
+            <p class="footer-copy">&copy; 2026 FullStats</p>
         </div>
     </div>
 </footer>

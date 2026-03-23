@@ -1,190 +1,185 @@
 <%- include('partials/header', { title: 'TOP', css: 'home.css', js: 'index.js', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
 <main class="home-page">
-    <section class="landing-hero">
-        <div class="container site-container">
-            <div class="row align-items-start g-5 hero-stage">
-                <div class="col-lg-7 hero-intro reveal-up" data-reveal data-parallax="12">
-                    <p class="hero-overline">FULL PARTY / VALORANT / ANALYTICS</p>
-                    <h1 class="hero-title">フルパの勝ち筋を<br>AIで見つける。</h1>
-                    <p class="hero-text">
-                        FullStats は個人の戦績を並べるだけのツールではありません。
-                        誰と組むと強いのか、誰がどのロールだと勝てるのか、どのマップなら今日戦うべきかまで、
-                        フルパ全体の意思決定に必要な情報をひとつの画面にまとめます。
-                    </p>
-                    <div class="hero-cta">
-                        <a href="/login" class="btn btn-primary btn-lg px-4">ログインして始める</a>
-                        <a href="#modules" class="btn btn-soft btn-lg px-4">機能を見る</a>
+    <div class="container site-container">
+        <section class="arena-shell">
+            <div class="arena-main" data-arena-main>
+                <div class="arena-ambient" aria-hidden="true">
+                    <span class="ambient-orb ambient-orb-cyan"></span>
+                    <span class="ambient-orb ambient-orb-lime"></span>
+                    <span class="ambient-ring ambient-ring-one"></span>
+                    <span class="ambient-ring ambient-ring-two"></span>
+                    <span class="ambient-scan"></span>
+                    <span class="ambient-grid-glow"></span>
+                    <span class="ambient-floor"></span>
+                    <span class="ambient-floor-beam ambient-floor-beam-one"></span>
+                    <span class="ambient-floor-beam ambient-floor-beam-two"></span>
+                    <span class="ambient-floor-pulse"></span>
+                    <span class="ambient-floor-noise"></span>
+                </div>
+
+                <div class="arena-topbar">
+                    <a href="/" class="arena-brand">
+                        <span class="arena-brand-mark">FS</span>
+                        <span class="arena-brand-copy">FULLSTATS</span>
+                    </a>
+                    <div class="arena-topbar-actions">
+                        <a href="/tasks" class="arena-mini-link">&#12479;&#12473;&#12463;</a>
+                        <% if (isLoggedIn) { %>
+                            <form action="/logout" method="POST" class="arena-inline-form">
+                                <button type="submit" class="btn arena-mini-button">&#12525;&#12464;&#12450;&#12454;&#12488;</button>
+                            </form>
+                        <% } else { %>
+                            <a href="/login" class="btn arena-mini-button">&#12525;&#12464;&#12452;&#12531;</a>
+                        <% } %>
                     </div>
                 </div>
 
-                <div class="col-lg-5 hero-board reveal-up" data-reveal data-tilt-card data-parallax="-8">
-                    <div class="board-header">
-                        <span class="board-tag">TEAM SNAPSHOT</span>
-                        <span class="board-state">READY</span>
-                    </div>
-                    <div class="board-main">
-                        <div class="board-stat">
-                            <span>直近10試合勝率</span>
-                            <strong data-countup="72">72%</strong>
-                        </div>
-                        <div class="board-note">
-                            <p>Best</p>
-                            <strong>A / B / C / D / E</strong>
-                        </div>
-                    </div>
-                    <div class="board-grid">
-                        <div class="board-cell">
-                            <span>Role</span>
-                            <p>A Duelist / C Initiator</p>
-                        </div>
-                        <div class="board-cell">
-                            <span>Map</span>
-                            <p>Ascent / Lotus</p>
-                        </div>
-                        <div class="board-cell">
-                            <span>Risk</span>
-                            <p>Bind</p>
-                        </div>
-                        <div class="board-cell">
-                            <span>Call</span>
-                            <p>Play Today</p>
-                        </div>
+                <div class="arena-core">
+                    <h1 class="arena-title" data-glitch-text="FULLSTATS" aria-label="FULLSTATS">
+                        <span class="arena-title-letter" style="--letter-index: 0">F</span>
+                        <span class="arena-title-letter" style="--letter-index: 1">U</span>
+                        <span class="arena-title-letter" style="--letter-index: 2">L</span>
+                        <span class="arena-title-letter" style="--letter-index: 3">L</span>
+                        <span class="arena-title-letter" style="--letter-index: 4">S</span>
+                        <span class="arena-title-letter" style="--letter-index: 5">T</span>
+                        <span class="arena-title-letter" style="--letter-index: 6">A</span>
+                        <span class="arena-title-letter" style="--letter-index: 7">T</span>
+                        <span class="arena-title-letter" style="--letter-index: 8">S</span>
+                    </h1>
+
+                    <div class="arena-actions">
+                        <% if (isLoggedIn) { %>
+                            <a href="/tasks" class="btn arena-primary">&#20837;&#12427;</a>
+                        <% } else { %>
+                            <a href="/login" class="btn arena-primary">&#12525;&#12464;&#12452;&#12531;</a>
+                        <% } %>
+                        <span class="arena-badge" data-status-badge><%= isLoggedIn ? '接続中' : 'ロック中' %></span>
                     </div>
                 </div>
             </div>
 
-            <div class="row row-cols-2 row-cols-lg-5 g-3 hero-ribbon reveal-up" data-reveal>
-                <div class="col"><span>LINEUP WIN RATE</span></div>
-                <div class="col"><span>ROLE FIT</span></div>
-                <div class="col"><span>MAP TREND</span></div>
-                <div class="col"><span>PLAYER DETAIL</span></div>
-                <div class="col"><span>TODAY&apos;S DECISION</span></div>
-            </div>
-        </div>
-    </section>
-
-    <section class="manifest-section">
-        <div class="container site-container">
-            <div class="row g-5 manifest-layout">
-                <div class="col-lg-5 manifest-copy reveal-up" data-reveal>
-                    <p class="section-kicker">WHY FULLSTATS</p>
-                    <h2>AI分析で、<br>最強への一歩</h2>
-                    <p>
-                        フルパで勝つために必要なのは、個人の数字だけではありません。
-                        誰と組むと強いか、どのロールで勝てるか、どのマップを避けるべきか。
-                        FullStats はその全部を、試合前に話せる形へ変えていきます。
-                    </p>
-                </div>
-
-                <div class="col-lg-7">
-                    <div class="row g-4 manifest-points">
-                        <article class="col-md-4 manifest-card reveal-up" data-reveal>
-                            <span>01</span>
-                            <h3>構成から決める</h3>
-                            <p>5人の組み合わせごとの勝率を見て、勝ちやすい並びを先に決める。</p>
-                        </article>
-                        <article class="col-md-4 manifest-card reveal-up" data-reveal>
-                            <span>02</span>
-                            <h3>ロールを揃える</h3>
-                            <p>誰がどのロールなら強いかを数字で見て、担当を最適化する。</p>
-                        </article>
-                        <article class="col-md-4 manifest-card reveal-up" data-reveal>
-                            <span>03</span>
-                            <h3>今日を判断する</h3>
-                            <p>直近10試合の波を見て、その日の判断にすぐつなげられる。</p>
-                        </article>
+            <aside class="arena-side">
+                <article class="hud-card hud-status" data-tilt-card>
+                    <div class="hud-head">
+                        <span>7 DAYS</span>
+                        <strong>赤点回避ブラザーズ</strong>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="modules" class="modules-section">
-        <div class="container site-container">
-            <div class="modules-head reveal-up" data-reveal>
-                <p class="section-kicker">CORE MODULES</p>
-                <h2>フルパに必要な判断軸を<br>5つのモジュールでまとめる。</h2>
-            </div>
-
-            <div class="row g-4 modules-stack">
-                <article class="col-12 module-card module-wide reveal-up" data-reveal>
-                    <div class="module-index">MODULE 01</div>
-                    <div class="module-body">
-                        <h3>フルパ構成ごとの勝率分析</h3>
-                        <p>
-                            A + B + C + D + E の組み合わせごとに勝率を記録し、
-                            「この5人だと強い」を最短で把握できるようにします。
-                        </p>
-                    </div>
+                    <ul class="member-board" data-member-board>
+                        <li class="member-row">
+                            <span class="member-name">o1m0</span>
+                            <div class="member-week-head" aria-hidden="true">
+                                <span>24</span>
+                                <span>25</span>
+                                <span>26</span>
+                                <span>27</span>
+                                <span>28</span>
+                                <span>29</span>
+                                <span>30</span>
+                            </div>
+                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
+                                <strong class="member-state is-ready" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-ready" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-ready" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                            </div>
+                            <span class="member-time">10:00 - 18:00</span>
+                        </li>
+                        <li class="member-row">
+                            <span class="member-name">magoo</span>
+                            <div class="member-week-head" aria-hidden="true">
+                                <span>24</span>
+                                <span>25</span>
+                                <span>26</span>
+                                <span>27</span>
+                                <span>28</span>
+                                <span>29</span>
+                                <span>30</span>
+                            </div>
+                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
+                                <strong class="member-state is-hold" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-ready" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-hold" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-ready" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                            </div>
+                            <span class="member-time">-</span>
+                        </li>
+                        <li class="member-row">
+                            <span class="member-name">障害者</span>
+                            <div class="member-week-head" aria-hidden="true">
+                                <span>24</span>
+                                <span>25</span>
+                                <span>26</span>
+                                <span>27</span>
+                                <span>28</span>
+                                <span>29</span>
+                                <span>30</span>
+                            </div>
+                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
+                                <strong class="member-state is-ready" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-ready" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-hold" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                            </div>
+                            <span class="member-time">13:00 - 22:00</span>
+                        </li>
+                        <li class="member-row">
+                            <span class="member-name">yotumekami</span>
+                            <div class="member-week-head" aria-hidden="true">
+                                <span>24</span>
+                                <span>25</span>
+                                <span>26</span>
+                                <span>27</span>
+                                <span>28</span>
+                                <span>29</span>
+                                <span>30</span>
+                            </div>
+                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
+                                <strong class="member-state is-ready" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-ready" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                            </div>
+                            <span class="member-time">09:00 - 12:00</span>
+                        </li>
+                        <li class="member-row">
+                            <span class="member-name">EU</span>
+                            <div class="member-week-head" aria-hidden="true">
+                                <span>24</span>
+                                <span>25</span>
+                                <span>26</span>
+                                <span>27</span>
+                                <span>28</span>
+                                <span>29</span>
+                                <span>30</span>
+                            </div>
+                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
+                                <strong class="member-state is-hold" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-hold" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-ready" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-ready" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                                <strong class="member-state is-ready" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
+                                <strong class="member-state is-hold" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
+                            </div>
+                            <span class="member-time">-</span>
+                        </li>
+                    </ul>
                 </article>
-
-                <article class="col-lg-6 module-card reveal-up" data-reveal>
-                    <div class="module-index">MODULE 02</div>
-                    <div class="module-body">
-                        <h3>ロール別勝率</h3>
-                        <p>誰がどのロールを持つと勝てるかを整理し、チーム全体の並びを最適化します。</p>
-                    </div>
-                </article>
-
-                <article class="col-lg-6 module-card reveal-up" data-reveal>
-                    <div class="module-index">MODULE 03</div>
-                    <div class="module-body">
-                        <h3>マップ別得意傾向</h3>
-                        <p>メンバーとチーム全体のマップ相性を可視化し、ピックやBANの判断に活かせます。</p>
-                    </div>
-                </article>
-
-                <article class="col-lg-6 module-card reveal-up" data-reveal>
-                    <div class="module-index">MODULE 04</div>
-                    <div class="module-body">
-                        <h3>メンバーごとの詳細ページ</h3>
-                        <p>使用エージェント、ロール別勝率、最近の推移、KD / ACS までまとめて見られます。</p>
-                    </div>
-                </article>
-
-                <article class="col-lg-6 module-card accent reveal-up" data-reveal>
-                    <div class="module-index">MODULE 05</div>
-                    <div class="module-body">
-                        <h3>最近の傾向と今日の判断</h3>
-                        <p>勝っている構成、負けている構成、調子の波を見て、その日の可否まで判断できます。</p>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="sequence-section">
-        <div class="container site-container">
-            <div class="sequence-panel reveal-up" data-reveal>
-                <div class="sequence-copy">
-                    <p class="section-kicker">DECISION SEQUENCE</p>
-                    <h2>試合前の会話を<br>4つの順番に整理する。</h2>
-                </div>
-                <div class="row g-4 sequence-line">
-                    <div class="col-md-6 col-xl-3 sequence-step">
-                        <span>01</span>
-                        <strong>構成を選ぶ</strong>
-                        <p>5人の勝率から最適な並びを確認。</p>
-                    </div>
-                    <div class="col-md-6 col-xl-3 sequence-step">
-                        <span>02</span>
-                        <strong>ロールを決める</strong>
-                        <p>勝ちやすい役割分担を数字で調整。</p>
-                    </div>
-                    <div class="col-md-6 col-xl-3 sequence-step">
-                        <span>03</span>
-                        <strong>マップを見る</strong>
-                        <p>得意と苦手を見て判断材料を揃える。</p>
-                    </div>
-                    <div class="col-md-6 col-xl-3 sequence-step">
-                        <span>04</span>
-                        <strong>今日の判断</strong>
-                        <p>直近の傾向から、今やるべきかを決める。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </aside>
+        </section>
+    </div>
 </main>
 <%- include('partials/footer', { js: 'index.js' }) %>
