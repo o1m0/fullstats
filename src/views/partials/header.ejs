@@ -21,4 +21,4 @@
     })();
   </script>
 </head>
-<body>
+<body data-logged-in="<%= typeof isLoggedIn !== 'undefined' && isLoggedIn ? 'true' : 'false' %>">

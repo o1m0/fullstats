@@ -1,6 +1,13 @@
 (() => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const homePage = document.querySelector(".home-page");
+  const isLoggedIn = document.body.dataset.loggedIn === "true";
+
+  const primaryCta = document.querySelector('.hero-cta a[href="/login"]');
+  if (primaryCta && isLoggedIn) {
+    primaryCta.href = "/tasks";
+    primaryCta.textContent = "タスクを開く";
+  }
 
   if (homePage) {
     requestAnimationFrame(() => {

@@ -145,6 +145,10 @@ a {
   font-size: 0.82rem;
 }
 
+.nav-auth-form {
+  margin: 0;
+}
+
 .site-login-btn {
   min-height: 44px;
   padding: 0.7rem 1.15rem;

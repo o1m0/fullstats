@@ -1,5 +1,5 @@
-<%- include('partials/header', { title: 'TOP', css: 'home.css', js: 'index.js' }) %>
-<%- include('partials/nav') %>
+<%- include('partials/header', { title: 'TOP', css: 'home.css', js: 'index.js', isLoggedIn }) %>
+<%- include('partials/nav', { isLoggedIn }) %>
 <main class="home-page">
     <section class="landing-hero">
         <div class="container site-container">

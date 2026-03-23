@@ -1,0 +1,132 @@
+.tasks-page {
+  padding: 3rem 0 5rem;
+}
+
+.tasks-hero {
+  margin-bottom: 3rem;
+}
+
+.tasks-kicker {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tasks-title {
+  margin: 0 0 1rem;
+  color: var(--text);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.06em;
+}
+
+.tasks-text {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.tasks-grid {
+  margin-top: 2.5rem;
+}
+
+.tasks-panel {
+  height: 100%;
+  padding: 1.8rem;
+  border: 1px solid rgba(49, 35, 24, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 18px 45px rgba(46, 31, 21, 0.06);
+}
+
+.tasks-panel-kicker,
+.tasks-card-label {
+  display: inline-flex;
+  margin-bottom: 0.9rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tasks-panel h2,
+.tasks-card h3 {
+  margin: 0 0 0.8rem;
+  color: var(--text);
+}
+
+.tasks-panel h2 {
+  font-size: 1.8rem;
+  letter-spacing: -0.04em;
+}
+
+.tasks-panel p,
+.tasks-card p,
+.tasks-item span {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.tasks-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.tasks-item {
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(49, 35, 24, 0.12);
+}
+
+.tasks-item strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--text);
+  font-size: 1.02rem;
+}
+
+.tasks-card {
+  height: 100%;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(49, 35, 24, 0.12);
+}
+
+.tasks-card h3 {
+  font-size: 1.22rem;
+}
+
+.tasks-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.8rem;
+}
+
+.tasks-actions .btn {
+  min-height: 48px;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  border-radius: 999px;
+}
+
+@media (max-width: 575.98px) {
+  .tasks-page {
+    padding: 2rem 0 3.6rem;
+  }
+
+  .tasks-panel {
+    padding: 1.3rem;
+    border-radius: 20px;
+  }
+
+  .tasks-actions .btn {
+    width: 100%;
+  }
+}

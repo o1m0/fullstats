@@ -36,8 +36,14 @@
 
                 <div class="d-lg-flex align-items-center gap-3 ms-lg-4 pt-3 pt-lg-0 nav-meta">
                     <span class="nav-status d-none d-lg-inline">Built for coordinated 5-stack teams</span>
-                    <a href="/login" class="btn site-login-btn">Log In</a>
-                    <a href="/register" class="btn site-register-btn">Sign Up</a>
+                    <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
+                        <form action="/logout" method="POST" class="nav-auth-form">
+                            <button type="submit" class="btn site-login-btn">Logout</button>
+                        </form>
+                    <% } else { %>
+                        <a href="/login" class="btn site-login-btn">Log In</a>
+                        <a href="/register" class="btn site-register-btn">Sign Up</a>
+                    <% } %>
                 </div>
             </div>
         </div>
