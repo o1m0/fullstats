@@ -1,0 +1,69 @@
+<%- include('partials/header', { title: 'Login', css: 'auth.css' }) %>
+<%- include('partials/nav') %>
+<main class="auth-page">
+    <div class="container site-container">
+        <div class="row g-4 g-lg-5 auth-layout align-items-stretch">
+            <section class="col-lg-6">
+                <div class="auth-panel">
+                    <p class="auth-kicker">Login</p>
+                    <h1 class="auth-title">チームに戻って、<br>次の判断を始める。</h1>
+                    <p class="auth-description">
+                        FullStats にログインして、フルパ構成、ロール、マップ、最近の傾向を
+                        いつもの流れで確認できます。
+                    </p>
+
+                    <form action="/login" method="POST" class="auth-form">
+                        <div class="mb-3">
+                            <label for="login-username" class="auth-label">ユーザー名</label>
+                            <input id="login-username" name="username" type="text" class="form-control auth-input" placeholder="ユーザー名を入力" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="login-password" class="auth-label">パスワード</label>
+                            <input id="login-password" name="password" type="password" class="form-control auth-input" placeholder="パスワードを入力" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 auth-submit">ログイン</button>
+                    </form>
+
+                    <p class="auth-link-note mt-4">
+                        アカウントがまだない場合は <a href="/register">新規登録</a> から始められます。
+                    </p>
+                </div>
+            </section>
+
+            <aside class="col-lg-6">
+                <div class="auth-aside">
+                    <div>
+                        <p class="auth-aside-kicker">Full Party Workflow</p>
+                        <h2 class="auth-aside-title">勝率の高い構成を、<br>ログイン後すぐに確認。</h2>
+                        <p class="auth-aside-text">
+                            誰と組むか、誰がどのロールを持つか、どのマップを優先するか。
+                            試合前の会話に必要な材料をひとつのプロダクトで整理します。
+                        </p>
+                    </div>
+
+                    <div class="auth-metrics">
+                        <div class="auth-metric">
+                            <span>Lineup</span>
+                            <strong>Best 5</strong>
+                        </div>
+                        <div class="auth-metric">
+                            <span>Role</span>
+                            <strong>Win Fit</strong>
+                        </div>
+                        <div class="auth-metric">
+                            <span>Map</span>
+                            <strong>Priority</strong>
+                        </div>
+                        <div class="auth-metric">
+                            <span>Recent</span>
+                            <strong>10 Matches</strong>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</main>
+<%- include('partials/footer') %>

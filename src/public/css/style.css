@@ -1,0 +1,341 @@
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg: #f6f3ec;
+  --bg-soft: #ece6db;
+  --surface: rgba(255, 255, 255, 0.65);
+  --line: rgba(49, 35, 24, 0.14);
+  --text: #1a1713;
+  --muted: #6b6258;
+  --accent: #d84c2f;
+  --accent-deep: #8a2613;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(216, 76, 47, 0.12), transparent 22%),
+    linear-gradient(180deg, #f7f3ea 0%, #f2eee6 100%);
+  color: var(--text);
+  font-family: "Segoe UI", "Yu Gothic UI", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-container {
+  max-width: 1240px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.site-navbar {
+  padding: 1rem 0;
+  background: rgba(246, 243, 236, 0.78);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid transparent;
+  transition: background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.site-header.is-scrolled .site-navbar {
+  background: rgba(246, 243, 236, 0.92);
+  border-bottom-color: var(--line);
+  box-shadow: 0 18px 45px rgba(33, 25, 20, 0.06);
+}
+
+.navbar-brand {
+  margin-right: 0;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 1px solid rgba(216, 76, 47, 0.24);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.brand-copy {
+  line-height: 1.05;
+}
+
+.brand-copy strong {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand-copy small {
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.site-navbar-toggler {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.55rem 0.8rem;
+}
+
+.site-navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(216, 76, 47, 0.14);
+}
+
+.site-navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2826, 23, 19, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.site-nav-link {
+  position: relative;
+  color: rgba(26, 23, 19, 0.8);
+  font-size: 0.96rem;
+  display: inline-flex;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.site-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.15rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus,
+.site-nav-link.active {
+  color: var(--accent-deep);
+}
+
+.site-nav-link:hover::after,
+.site-nav-link:focus::after,
+.site-nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-status {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.site-login-btn {
+  min-height: 44px;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid rgba(216, 76, 47, 0.24);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-register-btn {
+  min-height: 44px;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.42);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-register-btn:hover,
+.site-register-btn:focus {
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text);
+}
+
+.site-login-btn:hover,
+.site-login-btn:focus {
+  background: var(--accent-deep);
+  color: #fff;
+}
+
+.btn-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+  color: #fff;
+}
+
+.site-footer {
+  padding: 5rem 0 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.footer-badge {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.footer-logo {
+  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.footer-copy {
+  margin: 0;
+  max-width: 34rem;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer-heading {
+  margin-bottom: 0.35rem;
+  color: var(--accent-deep);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.footer-column a,
+.footer-column span {
+  color: rgba(26, 23, 19, 0.82);
+  line-height: 1.8;
+}
+
+.footer-column a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+@media (max-width: 991.98px) {
+  .site-navbar {
+    padding: 0.8rem 0;
+  }
+
+  .site-navbar .navbar-collapse {
+    margin-top: 0.9rem;
+    padding: 1rem 0 0.2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .site-navbar .navbar-nav {
+    gap: 0.35rem;
+  }
+
+  .site-nav-link {
+    display: block;
+    width: 100%;
+    padding: 0.55rem 0 !important;
+  }
+
+  .nav-meta {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    border-top: 1px solid var(--line);
+    margin-top: 1rem;
+    padding-top: 1rem !important;
+    margin-left: 0 !important;
+  }
+
+  .site-login-btn,
+  .site-register-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .site-container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .navbar-brand {
+    gap: 0.7rem !important;
+  }
+
+  .brand-copy small {
+    display: none;
+  }
+
+  .brand-copy strong {
+    font-size: 0.94rem;
+  }
+
+  .brand-logo {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .nav-meta {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .site-navbar,
+  .site-nav-link::after {
+    transition: none;
+  }
+}
