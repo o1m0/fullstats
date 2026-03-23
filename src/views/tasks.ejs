@@ -1,0 +1,82 @@
+<%- include('partials/header', { title: 'Tasks', css: 'tasks.css', isLoggedIn }) %>
+<%- include('partials/nav', { isLoggedIn }) %>
+<main class="tasks-page">
+    <div class="container site-container">
+        <section class="tasks-hero">
+            <p class="tasks-kicker">Team Workspace</p>
+            <h1 class="tasks-title">ログイン後のホームです。<br>ここからチーム分析を始めます。</h1>
+            <p class="tasks-text">
+                このページを、ログイン後・登録後の着地先として使えるようにしました。
+                今後はここに、直近の勝率、フルパ構成、ロール別傾向、マップ別の優先度を載せていけます。
+            </p>
+        </section>
+
+        <section class="row g-4 tasks-grid">
+            <div class="col-lg-5">
+                <div class="tasks-panel">
+                    <span class="tasks-panel-kicker">Current Flow</span>
+                    <h2>まず見るべき4つ</h2>
+                    <p>ログイン後の判断導線をそのまま置けるように、最初の情報ブロックをまとめています。</p>
+
+                    <div class="tasks-list">
+                        <div class="tasks-item">
+                            <strong>フルパ構成の勝率</strong>
+                            <span>一番勝っている5人の組み合わせを確認。</span>
+                        </div>
+                        <div class="tasks-item">
+                            <strong>ロール別の最適化</strong>
+                            <span>誰がどのロールだと勝ちやすいかを見る。</span>
+                        </div>
+                        <div class="tasks-item">
+                            <strong>マップ傾向</strong>
+                            <span>得意マップと避けたいマップを整理する。</span>
+                        </div>
+                        <div class="tasks-item">
+                            <strong>今日の判断</strong>
+                            <span>直近10試合から、今日はやるべきかを決める。</span>
+                        </div>
+                    </div>
+
+                    <div class="tasks-actions">
+                        <a href="/" class="btn btn-soft">トップへ戻る</a>
+                        <a href="/register" class="btn btn-primary">別アカウントを作る</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <article class="tasks-card">
+                            <span class="tasks-card-label">Module 01</span>
+                            <h3>Lineup Win Rate</h3>
+                            <p>チーム構成ごとの勝率を一覧で比較。</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6">
+                        <article class="tasks-card">
+                            <span class="tasks-card-label">Module 02</span>
+                            <h3>Role Allocation</h3>
+                            <p>ロール別に最も勝てる担当を判断。</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6">
+                        <article class="tasks-card">
+                            <span class="tasks-card-label">Module 03</span>
+                            <h3>Map Priority</h3>
+                            <p>マップの得意不得意からピック判断へつなげる。</p>
+                        </article>
+                    </div>
+                    <div class="col-md-6">
+                        <article class="tasks-card">
+                            <span class="tasks-card-label">Module 04</span>
+                            <h3>Player Detail</h3>
+                            <p>個人ページで最近のパフォーマンスを確認。</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<%- include('partials/footer') %>

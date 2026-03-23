@@ -1,5 +1,5 @@
-<%- include('partials/header', { title: 'Login', css: 'auth.css' }) %>
-<%- include('partials/nav') %>
+<%- include('partials/header', { title: 'Login', css: 'auth.css', isLoggedIn }) %>
+<%- include('partials/nav', { isLoggedIn }) %>
 <main class="auth-page">
     <div class="container site-container">
         <div class="row g-4 g-lg-5 auth-layout align-items-stretch">
@@ -11,6 +11,15 @@
                         FullStats にログインして、フルパ構成、ロール、マップ、最近の傾向を
                         いつもの流れで確認できます。
                     </p>
+
+                    <% if (flash) { %>
+                        <div class="alert alert-danger mt-4" role="alert">
+                            <strong><%= flash.message %></strong>
+                            <% if (sessionData) { %>
+                                <pre class="auth-session mt-3"><%= sessionData %></pre>
+                            <% } %>
+                        </div>
+                    <% } %>
 
                     <form action="/login" method="POST" class="auth-form">
                         <div class="mb-3">
