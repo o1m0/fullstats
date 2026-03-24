@@ -610,6 +610,143 @@
   animation-delay: 1.6s;
 }
 
+.arena-auth-core {
+  gap: 1.35rem;
+}
+
+.arena-auth-shell {
+  grid-template-columns: minmax(0, 880px);
+  justify-content: center;
+}
+
+.auth-login-page {
+  min-height: calc(100dvh - 126px);
+}
+
+.auth-login-page > .site-container {
+  width: 100%;
+}
+
+.arena-auth-main {
+  min-height: 42rem;
+}
+
+.arena-auth-topbar {
+  width: 100%;
+}
+
+.arena-auth-title {
+  font-size: clamp(3.4rem, 9vw, 5.8rem);
+}
+
+.arena-auth-core,
+.arena-auth-copy,
+.arena-auth-note {
+  position: relative;
+  z-index: 1;
+}
+
+.arena-auth-core {
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.arena-auth-copy,
+.arena-auth-note {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.arena-auth-note {
+  margin-top: 1.1rem;
+  font-size: 0.94rem;
+}
+
+.arena-auth-note a {
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.arena-auth-form {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1rem;
+  width: min(100%, 30rem);
+  margin: 0 auto;
+  text-align: left;
+}
+
+.arena-auth-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: rgba(244, 251, 255, 0.86);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.arena-auth-input {
+  min-height: 56px;
+  border: 1px solid rgba(100, 245, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(5, 10, 21, 0.54);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.arena-auth-input::placeholder {
+  color: rgba(141, 163, 191, 0.82);
+}
+
+.arena-auth-input:focus {
+  border-color: rgba(100, 245, 255, 0.32);
+  background: rgba(7, 15, 28, 0.82);
+  color: var(--text);
+  box-shadow:
+    0 0 0 0.22rem rgba(100, 245, 255, 0.12),
+    inset 0 0 0 1px rgba(100, 245, 255, 0.08);
+}
+
+.arena-auth-submit {
+  min-width: 10rem;
+  min-height: 46px;
+  padding: 0.75rem 1.2rem;
+}
+
+.arena-auth-actions {
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.arena-auth-alert {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 30rem);
+  margin: 0;
+  border: 1px solid rgba(255, 138, 91, 0.3);
+  border-radius: 18px;
+  background: rgba(61, 18, 18, 0.66);
+  color: #fff4f1;
+}
+
+.arena-auth-session {
+  margin: 0.85rem 0 0;
+  padding: 0.95rem;
+  overflow-x: auto;
+  border-radius: 14px;
+  background: rgba(5, 10, 21, 0.54);
+  color: rgba(244, 251, 255, 0.86);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .arena-side {
   display: grid;
   gap: 1.25rem;
@@ -1047,6 +1184,12 @@ body.home-screen .site-footer {
     display: block;
   }
 
+  .auth-login-page {
+    min-height: calc(100dvh - 110px);
+    display: flex;
+    align-items: center;
+  }
+
   .arena-shell {
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
@@ -1094,6 +1237,10 @@ body.home-screen .site-footer {
 
   .arena-title {
     font-size: clamp(3.2rem, 10vw, 5rem);
+  }
+
+  .arena-auth-title {
+    font-size: clamp(3rem, 11vw, 4.5rem);
   }
 
   .arena-subtitle {
@@ -1213,6 +1360,14 @@ body.home-screen .site-footer {
     min-height: auto;
   }
 
+  .auth-login-page {
+    min-height: calc(100dvh - 92px);
+    display: flex;
+    align-items: center;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+
   .home-page::before,
   .home-page::after {
     border-radius: 0;
@@ -1276,6 +1431,30 @@ body.home-screen .site-footer {
     font-size: clamp(2.5rem, 16vw, 3.6rem);
   }
 
+  .arena-auth-title {
+    font-size: clamp(2.4rem, 15vw, 3.2rem);
+  }
+
+  .arena-auth-shell {
+    grid-template-columns: minmax(0, 1fr);
+    justify-content: center;
+  }
+
+  .arena-auth-main {
+    width: 100%;
+    min-height: min(42rem, calc(100dvh - 140px));
+  }
+
+  .arena-auth-topbar {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .arena-auth-core > div:first-child {
+    display: grid;
+    justify-items: center;
+  }
+
   .arena-kicker,
   .mission-label,
   .hud-head span,
@@ -1310,9 +1489,42 @@ body.home-screen .site-footer {
     font-size: 0.64rem;
   }
 
+  .arena-auth-form {
+    width: 100%;
+    gap: 0.8rem;
+  }
+
+  .arena-auth-input {
+    min-height: 46px;
+    border-radius: 14px;
+    font-size: 0.92rem;
+  }
+
+  .arena-auth-label {
+    margin-bottom: 0.35rem;
+    font-size: 0.66rem;
+  }
+
+  .arena-auth-alert,
+  .arena-auth-copy,
+  .arena-auth-note {
+    width: 100%;
+  }
+
+  .arena-auth-note {
+    margin-top: 0.8rem;
+    font-size: 0.76rem;
+    line-height: 1.65;
+  }
+
   .arena-strip {
+    justify-content: center;
     margin-top: 0.75rem;
     gap: 0.35rem;
+  }
+
+  .arena-auth-actions {
+    justify-content: center;
   }
 
   .arena-strip span {
