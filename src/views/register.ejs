@@ -1,69 +1,81 @@
-<%- include('partials/header', { title: 'Register', css: 'auth.css', isLoggedIn }) %>
+<%- include('partials/header', { title: 'Register', css: 'home.css', js: 'index.js', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
-<main class="auth-page">
+<main class="home-page auth-login-page">
     <div class="container site-container">
-        <div class="row g-4 g-lg-5 auth-layout align-items-stretch">
-            <section class="col-lg-6 order-lg-2">
-                <div class="auth-panel">
-                    <p class="auth-kicker">Register</p>
-                    <h1 class="auth-title">新しいチーム分析を、<br>ここから始める。</h1>
-                    <p class="auth-description">
-                        アカウントを作成すると、フルパ構成の勝率、ロール別傾向、
-                        マップ相性、最近の流れをチーム単位で見られるようになります。
-                    </p>
-
-                    <form action="/register" method="POST" class="auth-form">
-                        <div class="mb-3">
-                            <label for="register-username" class="auth-label">ユーザー名</label>
-                            <input id="register-username" name="username" type="text" class="form-control auth-input" placeholder="ユーザー名を入力" required>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="register-password" class="auth-label">パスワード</label>
-                            <input id="register-password" name="password" type="password" class="form-control auth-input" placeholder="パスワードを入力" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary w-100 auth-submit">新規登録する</button>
-                    </form>
-
-                    <p class="auth-link-note mt-4">
-                        すでにアカウントがある場合は <a href="/login">ログイン</a> してください。
-                    </p>
+        <section class="arena-shell arena-auth-shell">
+            <div class="arena-main arena-auth-main" data-arena-main>
+                <div class="arena-ambient" aria-hidden="true">
+                    <span class="ambient-orb ambient-orb-cyan"></span>
+                    <span class="ambient-orb ambient-orb-lime"></span>
+                    <span class="ambient-ring ambient-ring-one"></span>
+                    <span class="ambient-ring ambient-ring-two"></span>
+                    <span class="ambient-scan"></span>
+                    <span class="ambient-grid-glow"></span>
+                    <span class="ambient-floor"></span>
+                    <span class="ambient-floor-beam ambient-floor-beam-one"></span>
+                    <span class="ambient-floor-beam ambient-floor-beam-two"></span>
+                    <span class="ambient-floor-pulse"></span>
+                    <span class="ambient-floor-noise"></span>
                 </div>
-            </section>
 
-            <aside class="col-lg-6 order-lg-1">
-                <div class="auth-aside">
+                <div class="arena-topbar arena-auth-topbar">
+                    <a href="/" class="arena-brand">
+                        <span class="arena-brand-mark">FS</span>
+                        <span class="arena-brand-copy">FULLSTATS</span>
+                    </a>
+                    <div class="arena-topbar-actions">
+                        <a href="/" class="arena-mini-link">Home</a>
+                        <a href="/login" class="btn arena-mini-button">Login</a>
+                    </div>
+                </div>
+
+                <div class="arena-core arena-auth-core">
                     <div>
-                        <p class="auth-aside-kicker">Product Start</p>
-                        <h2 class="auth-aside-title">個人ではなく、<br>チームで勝つために。</h2>
-                        <p class="auth-aside-text">
-                            FullStats は、なんとなくの印象を数字へ変えるための分析ツールです。
-                            最初の登録から、そのままチーム単位の意思決定へつなげられます。
+                        <p class="arena-kicker">New Member</p>
+                        <h1 class="arena-title arena-auth-title" data-glitch-text="REGISTER" aria-label="REGISTER">
+                            <span class="arena-title-letter" style="--letter-index: 0">R</span>
+                            <span class="arena-title-letter" style="--letter-index: 1">E</span>
+                            <span class="arena-title-letter" style="--letter-index: 2">G</span>
+                            <span class="arena-title-letter" style="--letter-index: 3">I</span>
+                            <span class="arena-title-letter" style="--letter-index: 4">S</span>
+                            <span class="arena-title-letter" style="--letter-index: 5">T</span>
+                            <span class="arena-title-letter" style="--letter-index: 6">E</span>
+                            <span class="arena-title-letter" style="--letter-index: 7">R</span>
+                        </h1>
+                        <p class="arena-auth-copy">
+                            FullStatsの新しいアカウントを作成して、チームの予定共有やロール整理をすぐに始められます。
                         </p>
                     </div>
 
-                    <div class="auth-metrics">
-                        <div class="auth-metric">
-                            <span>Feature</span>
-                            <strong>5 Modules</strong>
+                    <form action="/register" method="POST" class="arena-auth-form">
+                        <div>
+                            <label for="register-username" class="arena-auth-label">Username</label>
+                            <input id="register-username" name="username" type="text" class="form-control arena-auth-input" placeholder="Username" required>
                         </div>
-                        <div class="auth-metric">
-                            <span>Focus</span>
-                            <strong>5 Stack</strong>
+
+                        <div>
+                            <label for="register-password" class="arena-auth-label">Password</label>
+                            <input id="register-password" name="password" type="password" class="form-control arena-auth-input" placeholder="Password" required>
                         </div>
-                        <div class="auth-metric">
-                            <span>Decision</span>
-                            <strong>Pre Match</strong>
+
+                        <div class="arena-actions arena-auth-actions">
+                            <button type="submit" class="btn arena-primary arena-auth-submit">Register</button>
+                            <span class="arena-badge" data-status-badge>Setup</span>
                         </div>
-                        <div class="auth-metric">
-                            <span>View</span>
-                            <strong>Team Based</strong>
-                        </div>
+                    </form>
+
+                    <div class="arena-strip">
+                        <span>Team Start</span>
+                        <span>Member Setup</span>
+                        <span>Ready Board</span>
                     </div>
+
+                    <p class="arena-auth-note">
+                        Already have an account? <a href="/login">Log in here</a>.
+                    </p>
                 </div>
-            </aside>
-        </div>
+            </div>
+        </section>
     </div>
 </main>
-<%- include('partials/footer') %>
+<%- include('partials/footer', { js: 'index.js', isLoggedIn }) %>
