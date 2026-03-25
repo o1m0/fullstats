@@ -2,81 +2,205 @@
 <%- include('partials/nav', { isLoggedIn }) %>
 <main class="tasks-page">
     <div class="container site-container">
-        <section class="tasks-hero">
-            <p class="tasks-kicker">Team Workspace</p>
-            <h1 class="tasks-title">ログイン後のホームです。<br>ここからチーム分析を始めます。</h1>
-            <p class="tasks-text">
-                このページを、ログイン後・登録後の着地先として使えるようにしました。
-                今後はここに、直近の勝率、フルパ構成、ロール別傾向、マップ別の優先度を載せていけます。
-            </p>
-        </section>
+        <section class="tasks-shell">
+            <section class="tasks-hero-panel">
+                <div class="tasks-ambient" aria-hidden="true">
+                    <span class="tasks-orb tasks-orb-cyan"></span>
+                    <span class="tasks-orb tasks-orb-lime"></span>
+                    <span class="tasks-grid-glow"></span>
+                </div>
 
-        <section class="row g-4 tasks-grid">
-            <div class="col-lg-5">
-                <div class="tasks-panel">
-                    <span class="tasks-panel-kicker">Current Flow</span>
-                    <h2>まず見るべき4つ</h2>
-                    <p>ログイン後の判断導線をそのまま置けるように、最初の情報ブロックをまとめています。</p>
+                <div class="tasks-hero-copy">
+                    <p class="tasks-kicker">Team Workspace</p>
+                    <h1 class="tasks-title">TASK BOARD</h1>
+                    <p class="tasks-text">
+                        その日の編成確認、担当整理、次の試合準備までをひとつの画面で進められる
+                        FullStatsのワークスペースです。
+                    </p>
 
-                    <div class="tasks-list">
-                        <div class="tasks-item">
-                            <strong>フルパ構成の勝率</strong>
-                            <span>一番勝っている5人の組み合わせを確認。</span>
-                        </div>
-                        <div class="tasks-item">
-                            <strong>ロール別の最適化</strong>
-                            <span>誰がどのロールだと勝ちやすいかを見る。</span>
-                        </div>
-                        <div class="tasks-item">
-                            <strong>マップ傾向</strong>
-                            <span>得意マップと避けたいマップを整理する。</span>
-                        </div>
-                        <div class="tasks-item">
-                            <strong>今日の判断</strong>
-                            <span>直近10試合から、今日はやるべきかを決める。</span>
-                        </div>
-                    </div>
-
-                    <div class="tasks-actions">
-                        <a href="/" class="btn btn-soft">トップへ戻る</a>
-                        <a href="/register" class="btn btn-primary">別アカウントを作る</a>
+                    <div class="tasks-hero-actions">
+                        <a href="/" class="btn tasks-btn tasks-btn-secondary">Home</a>
+                        <% if (isLoggedIn) { %>
+                            <form action="/logout" method="POST" class="tasks-inline-form">
+                                <button type="submit" class="btn tasks-btn tasks-btn-primary">Logout</button>
+                            </form>
+                        <% } else { %>
+                            <a href="/login" class="btn tasks-btn tasks-btn-primary">Login</a>
+                        <% } %>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-7">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <article class="tasks-card">
-                            <span class="tasks-card-label">Module 01</span>
-                            <h3>Lineup Win Rate</h3>
-                            <p>チーム構成ごとの勝率を一覧で比較。</p>
-                        </article>
-                    </div>
-                    <div class="col-md-6">
-                        <article class="tasks-card">
-                            <span class="tasks-card-label">Module 02</span>
-                            <h3>Role Allocation</h3>
-                            <p>ロール別に最も勝てる担当を判断。</p>
-                        </article>
-                    </div>
-                    <div class="col-md-6">
-                        <article class="tasks-card">
-                            <span class="tasks-card-label">Module 03</span>
-                            <h3>Map Priority</h3>
-                            <p>マップの得意不得意からピック判断へつなげる。</p>
-                        </article>
-                    </div>
-                    <div class="col-md-6">
-                        <article class="tasks-card">
-                            <span class="tasks-card-label">Module 04</span>
-                            <h3>Player Detail</h3>
-                            <p>個人ページで最近のパフォーマンスを確認。</p>
-                        </article>
-                    </div>
+                <div class="tasks-hero-side">
+                    <article class="tasks-highlight-card">
+                        <span class="tasks-card-label">Today</span>
+                        <strong class="tasks-highlight-title">Focus Queue</strong>
+                        <ul class="tasks-focus-list">
+                            <li>Lineup check before scrim</li>
+                            <li>Role handoff for support lane</li>
+                            <li>Map priority update for next block</li>
+                        </ul>
+                    </article>
                 </div>
-            </div>
+            </section>
+
+            <section class="tasks-metrics">
+                <article class="tasks-metric-card">
+                    <span>Members</span>
+                    <strong>05</strong>
+                </article>
+                <article class="tasks-metric-card">
+                    <span>Open Tasks</span>
+                    <strong>12</strong>
+                </article>
+                <article class="tasks-metric-card">
+                    <span>Ready Slots</span>
+                    <strong>08</strong>
+                </article>
+                <article class="tasks-metric-card">
+                    <span>Next Match</span>
+                    <strong>19:30</strong>
+                </article>
+            </section>
+
+            <section class="tasks-board">
+                <article class="tasks-panel tasks-panel-wide">
+                    <div class="tasks-panel-head">
+                        <div>
+                            <span class="tasks-panel-kicker">Workflow</span>
+                            <h2 class="tasks-panel-title">Current Task Flow</h2>
+                        </div>
+                        <span class="tasks-panel-badge">Live</span>
+                    </div>
+
+                    <div class="tasks-flow-list">
+                        <article class="tasks-flow-item">
+                            <span class="tasks-flow-step">01</span>
+                            <div>
+                                <strong>Lineup Review</strong>
+                                <p>今いるメンバーで組める5人編成を確認して、開始候補を絞り込みます。</p>
+                            </div>
+                        </article>
+                        <article class="tasks-flow-item">
+                            <span class="tasks-flow-step">02</span>
+                            <div>
+                                <strong>Role Assignment</strong>
+                                <p>ロール重複や不足を見ながら、その日の担当を調整します。</p>
+                            </div>
+                        </article>
+                        <article class="tasks-flow-item">
+                            <span class="tasks-flow-step">03</span>
+                            <div>
+                                <strong>Map Planning</strong>
+                                <p>直近の戦績や相性を見て、優先マップを更新します。</p>
+                            </div>
+                        </article>
+                        <article class="tasks-flow-item">
+                            <span class="tasks-flow-step">04</span>
+                            <div>
+                                <strong>Final Check</strong>
+                                <p>開始前に空き時間と準備状況を確認して、進行を固めます。</p>
+                            </div>
+                        </article>
+                    </div>
+                </article>
+
+                <article class="tasks-panel">
+                    <div class="tasks-panel-head">
+                        <div>
+                            <span class="tasks-panel-kicker">Status</span>
+                            <h2 class="tasks-panel-title">Session Pulse</h2>
+                        </div>
+                    </div>
+
+                    <div class="tasks-status-stack">
+                        <div class="tasks-status-row">
+                            <span>Lineup Ready</span>
+                            <strong>4 / 5</strong>
+                        </div>
+                        <div class="tasks-status-row">
+                            <span>Role Balance</span>
+                            <strong>Stable</strong>
+                        </div>
+                        <div class="tasks-status-row">
+                            <span>Map Prep</span>
+                            <strong>Updating</strong>
+                        </div>
+                        <div class="tasks-status-row">
+                            <span>Voice Check</span>
+                            <strong>Done</strong>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tasks-panel">
+                    <div class="tasks-panel-head">
+                        <div>
+                            <span class="tasks-panel-kicker">Modules</span>
+                            <h2 class="tasks-panel-title">Workspace Blocks</h2>
+                        </div>
+                    </div>
+
+                    <div class="tasks-module-grid">
+                        <article class="tasks-module-card">
+                            <span>01</span>
+                            <strong>Lineup</strong>
+                            <p>勝率ベースで候補編成を整理。</p>
+                        </article>
+                        <article class="tasks-module-card">
+                            <span>02</span>
+                            <strong>Roles</strong>
+                            <p>担当の被りと不足を確認。</p>
+                        </article>
+                        <article class="tasks-module-card">
+                            <span>03</span>
+                            <strong>Maps</strong>
+                            <p>優先順と避け候補を更新。</p>
+                        </article>
+                        <article class="tasks-module-card">
+                            <span>04</span>
+                            <strong>Players</strong>
+                            <p>個別メモと最近の状態を見る。</p>
+                        </article>
+                    </div>
+                </article>
+
+                <article class="tasks-panel tasks-panel-wide">
+                    <div class="tasks-panel-head">
+                        <div>
+                            <span class="tasks-panel-kicker">Queue</span>
+                            <h2 class="tasks-panel-title">Next Actions</h2>
+                        </div>
+                    </div>
+
+                    <div class="tasks-queue">
+                        <div class="tasks-queue-item is-active">
+                            <span class="tasks-queue-dot"></span>
+                            <div>
+                                <strong>Support role confirm</strong>
+                                <p>Open now</p>
+                            </div>
+                            <span class="tasks-queue-tag">Priority</span>
+                        </div>
+                        <div class="tasks-queue-item">
+                            <span class="tasks-queue-dot"></span>
+                            <div>
+                                <strong>Map ban memo refresh</strong>
+                                <p>10 min ago</p>
+                            </div>
+                            <span class="tasks-queue-tag">Review</span>
+                        </div>
+                        <div class="tasks-queue-item">
+                            <span class="tasks-queue-dot"></span>
+                            <div>
+                                <strong>Starter list share</strong>
+                                <p>Waiting</p>
+                            </div>
+                            <span class="tasks-queue-tag">Pending</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
         </section>
     </div>
 </main>
-<%- include('partials/footer') %>
+<%- include('partials/footer', { isLoggedIn }) %>
