@@ -1,48 +1,46 @@
 <%- include('partials/header', { title: 'Login', css: 'home.css', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
-<main class="home-page home-architect-page auth-architect-page">
+<main class="simple-page">
     <div class="container site-container">
-        <section class="auth-architect-shell">
-            <div class="auth-architect-copy">
-                <p class="home-architect-lead">Member Access</p>
-                <h1 class="home-architect-title">ログイン</h1>
-                <p class="home-architect-text">
-                    チームの参加状況、ロール整理、タスク確認のための
-                    管理画面にアクセスします。
+        <section class="row g-3 auth-page-shell">
+            <div class="col-lg-7 auth-page-copy">
+                <p class="simple-eyebrow">Account</p>
+                <h1 class="simple-title">Login</h1>
+                <p class="simple-text">
+                    Sign in to open the admin pages.
                 </p>
             </div>
 
-            <article class="auth-architect-panel">
+            <div class="col-lg-5">
+            <article class="card shadow-sm border-0 auth-card">
                 <% if (flash) { %>
-                    <div class="auth-architect-alert" role="alert">
+                    <div class="alert alert-danger auth-alert" role="alert">
                         <strong><%= flash.message %></strong>
                         <% if (sessionData) { %>
-                            <pre class="auth-architect-session"><%= sessionData %></pre>
+                            <pre class="auth-session"><%= sessionData %></pre>
                         <% } %>
                     </div>
                 <% } %>
 
-                <form action="/login" method="POST" class="auth-architect-form">
-                    <div class="auth-architect-field">
-                        <label for="login-username" class="auth-architect-label">Username</label>
-                        <input id="login-username" name="username" type="text" class="form-control auth-architect-input" placeholder="Username" required>
+                <form action="/login" method="POST" class="vstack gap-3 auth-form">
+                    <div>
+                        <label for="login-username" class="form-label auth-label">Username</label>
+                        <input id="login-username" name="username" type="text" class="form-control auth-input" placeholder="Username" required>
                     </div>
 
-                    <div class="auth-architect-field">
-                        <label for="login-password" class="auth-architect-label">Password</label>
-                        <input id="login-password" name="password" type="password" class="form-control auth-architect-input" placeholder="Password" required>
+                    <div>
+                        <label for="login-password" class="form-label auth-label">Password</label>
+                        <input id="login-password" name="password" type="password" class="form-control auth-input" placeholder="Password" required>
                     </div>
 
-                    <div class="auth-architect-actions">
-                        <button type="submit" class="btn home-architect-primary">Login</button>
-                        <span class="home-architect-status"><%= isLoggedIn ? 'Connected' : 'Locked' %></span>
-                    </div>
+                    <button type="submit" class="btn btn-dark simple-button auth-submit">Login</button>
                 </form>
 
-                <p class="auth-architect-note">
-                    アカウントをお持ちでない場合は、<a href="/register">新規登録</a>へ進んでください。
+                <p class="auth-note">
+                    Need an account? <a href="/register">Register here</a>.
                 </p>
             </article>
+            </div>
         </section>
     </div>
 </main>

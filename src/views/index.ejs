@@ -1,91 +1,42 @@
-<%- include('partials/header', { title: 'TOP', css: 'home.css', isLoggedIn }) %>
+<%- include('partials/header', { title: 'Home', css: 'home.css', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
-<main class="home-page home-architect-page">
+<main class="simple-page">
     <div class="container site-container">
-        <section class="home-architect-shell">
-            <div class="home-architect-hero">
-                <div class="home-architect-eyebrow">
-                    <span>FULLSTATS</span>
-                    <span>TEAM CONTROL PANEL</span>
-                </div>
-
-                <div class="home-architect-copy">
-                    <p class="home-architect-lead">Overview</p>
-                    <h1 class="home-architect-title">
-                        チーム運用を、
-                        <br>
-                        静かに整理する。
-                    </h1>
-                    <p class="home-architect-text">
-                        参加可能時間、ロール整理、進行中のタスクをひとつの画面で確認するための
-                        シンプルな管理トップです。
-                    </p>
-                </div>
-
-                <div class="home-architect-actions">
-                    <% if (isLoggedIn) { %>
-                        <a href="/tasks" class="btn home-architect-primary">Workspace</a>
-                    <% } else { %>
-                        <a href="/login" class="btn home-architect-primary">Login</a>
-                    <% } %>
-                    <span class="home-architect-status"><%= isLoggedIn ? 'Connected' : 'Locked' %></span>
-                </div>
+        <section class="card shadow-sm border-0 simple-hero">
+            <p class="simple-eyebrow">FullStats</p>
+            <h1 class="simple-title">Simple team admin</h1>
+            <p class="simple-text">
+                This is the top page for the project. Keep it minimal and use it as an entry point to login or open the task screen.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+                <% if (isLoggedIn) { %>
+                    <a href="/tasks" class="btn btn-dark simple-button">Open Tasks</a>
+                <% } else { %>
+                    <a href="/login" class="btn btn-dark simple-button">Login</a>
+                    <a href="/register" class="btn btn-outline-secondary simple-button">Register</a>
+                <% } %>
             </div>
+        </section>
 
-            <section class="home-architect-grid">
-                <article class="home-architect-panel home-architect-panel-large">
-                    <div class="home-architect-panel-head">
-                        <span>01</span>
-                        <strong>Current Overview</strong>
-                    </div>
-                    <div class="home-architect-metrics">
-                        <div class="home-architect-metric">
-                            <span>Members</span>
-                            <strong>05</strong>
-                        </div>
-                        <div class="home-architect-metric">
-                            <span>Open Tasks</span>
-                            <strong>12</strong>
-                        </div>
-                        <div class="home-architect-metric">
-                            <span>Next Match</span>
-                            <strong>19:30</strong>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="home-architect-panel">
-                    <div class="home-architect-panel-head">
-                        <span>02</span>
-                        <strong>Availability</strong>
-                    </div>
-                    <p>当日の参加可能時間と開始候補を整理します。</p>
-                </article>
-
-                <article class="home-architect-panel">
-                    <div class="home-architect-panel-head">
-                        <span>03</span>
-                        <strong>Roles</strong>
-                    </div>
-                    <p>担当の重複や不足を確認し、配置を整えます。</p>
-                </article>
-
-                <article class="home-architect-panel">
-                    <div class="home-architect-panel-head">
-                        <span>04</span>
-                        <strong>Tasks</strong>
-                    </div>
-                    <p>次に進めるべき項目と優先度だけを一覧で確認します。</p>
-                </article>
-
-                <article class="home-architect-panel">
-                    <div class="home-architect-panel-head">
-                        <span>05</span>
-                        <strong>Notes</strong>
-                    </div>
-                    <p>試合前メモや更新履歴を残し、判断の流れを共有します。</p>
-                </article>
-            </section>
+        <section class="row g-3 simple-grid">
+            <div class="col-md-4">
+            <article class="card h-100 shadow-sm border-0 simple-card">
+                <h2>Home</h2>
+                <p>Use this page as a simple landing page without decorative sections.</p>
+            </article>
+            </div>
+            <div class="col-md-4">
+            <article class="card h-100 shadow-sm border-0 simple-card">
+                <h2>Login</h2>
+                <p>Members can sign in and move to the task management page.</p>
+            </article>
+            </div>
+            <div class="col-md-4">
+            <article class="card h-100 shadow-sm border-0 simple-card">
+                <h2>Tasks</h2>
+                <p>The admin page is separated into form, summary, and JSON blocks.</p>
+            </article>
+            </div>
         </section>
     </div>
 </main>

@@ -11,14 +11,5 @@
   <% if (typeof css !== 'undefined' && css) { %>
     <link rel="stylesheet" href="/css/<%= css %>">
   <% } %>
-  <script>
-    (() => {
-      const theme = localStorage.getItem("theme") || "light";
-      document.documentElement.setAttribute("data-theme", theme);
-      document.addEventListener("DOMContentLoaded", () => {
-        document.body.setAttribute("data-theme", theme);
-      }, { once: true });
-    })();
-  </script>
 </head>
-<body data-logged-in="<%= typeof isLoggedIn !== 'undefined' && isLoggedIn ? 'true' : 'false' %>">
+<body>
