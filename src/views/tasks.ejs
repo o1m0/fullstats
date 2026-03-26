@@ -1,5 +1,10 @@
 <%- include('partials/header', { title: 'Tasks', css: 'tasks.css', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
+<%
+    const account = accountData || null;
+    const rawJsonText = rawJson ? JSON.stringify(rawJson, null, 2) : "";
+    const cardImage = account && account.card && (account.card.wide || account.card.large || account.card.small);
+%>
 <main class="tasks-page tasks-architect-page">
     <div class="container site-container">
         <section class="tasks-architect-shell">
@@ -8,8 +13,7 @@
                     <p class="tasks-architect-lead">Workspace</p>
                     <h1 class="tasks-architect-title">Task Overview</h1>
                     <p class="tasks-architect-text">
-                        参加状況、ロール整理、進行中タスクを
-                        一覧で確認するための管理画面です。
+                        Search a Riot account and review the returned JSON without leaving this page.
                     </p>
                 </div>
 
@@ -51,14 +55,14 @@
                         <strong>Riot Account</strong>
                     </div>
 
-                    <form class="tasks-account-form" action="/search" method="POST">
+                    <form class="tasks-account-form" action="/tasks" method="GET">
                         <div class="tasks-account-field">
-                            <label for="riot-name" class="tasks-account-label">Riot ID</label>
-                            <input id="riot-name" name="riotName" type="text" class="form-control tasks-account-input" placeholder="信じるべきは女より筋肉">
+                            <label for="gameName" class="tasks-account-label">Riot ID</label>
+                            <input id="gameName" name="gameName" type="text" class="form-control tasks-account-input" value="<%= gameName || '' %>" placeholder="PlayerName" required>
                         </div>
                         <div class="tasks-account-field">
-                            <label for="riot-tag" class="tasks-account-label">Tag</label>
-                            <input id="riot-tag" name="riotTag" type="text" class="form-control tasks-account-input" placeholder="脚トレ">
+                            <label for="tagLine" class="tasks-account-label">Tag</label>
+                            <input id="tagLine" name="tagLine" type="text" class="form-control tasks-account-input" value="<%= tagLine || '' %>" placeholder="TagLine" required>
                         </div>
                         <button type="submit" class="btn tasks-architect-button is-primary">Search</button>
                     </form>
@@ -70,56 +74,65 @@
                         <strong>Account Preview</strong>
                     </div>
 
-                    <div class="tasks-account-preview">
-                        <div class="tasks-account-card">
-                            <div class="tasks-account-card-media">
-                                <img src="https://media.valorant-api.com/playercards/a7e78a56-4557-383e-72a1-95ae97bcf2c1/wideart.png" alt="Player card preview" class="tasks-account-card-image">
+                    <% if (error) { %>
+                        <div class="tasks-account-preview">
+                            <div class="tasks-account-detail">
+                                <span>Error</span>
+                                <strong><%= error %></strong>
                             </div>
-                            <div class="tasks-account-card-body">
-                                <p class="tasks-account-caption">Account</p>
-                                <h2 class="tasks-account-name">信じるべきは女より筋肉</h2>
-                                <p class="tasks-account-tag">#脚トレ</p>
-                                <div class="tasks-account-meta">
-                                    <div><span>Region</span><strong>ap</strong></div>
-                                    <div><span>Level</span><strong>289</strong></div>
-                                    <div><span>Updated</span><strong>0 minutes ago</strong></div>
+                            <% if (rawJsonText) { %>
+                                <div class="tasks-account-json">
+                                    <span class="tasks-account-json-label">Raw JSON</span>
+                                    <pre class="tasks-account-json-body"><%= rawJsonText %></pre>
+                                </div>
+                            <% } %>
+                        </div>
+                    <% } else if (account) { %>
+                        <div class="tasks-account-preview">
+                            <div class="tasks-account-card">
+                                <div class="tasks-account-card-media">
+                                    <% if (cardImage) { %>
+                                        <img src="<%= cardImage %>" alt="Player card preview" class="tasks-account-card-image">
+                                    <% } else { %>
+                                        <div class="tasks-account-card-image"></div>
+                                    <% } %>
+                                </div>
+                                <div class="tasks-account-card-body">
+                                    <p class="tasks-account-caption">Account</p>
+                                    <h2 class="tasks-account-name"><%= account.name || gameName %></h2>
+                                    <p class="tasks-account-tag">#<%= account.tag || tagLine %></p>
+                                    <div class="tasks-account-meta">
+                                        <div><span>Region</span><strong><%= account.region || "-" %></strong></div>
+                                        <div><span>Level</span><strong><%= account.account_level ?? "-" %></strong></div>
+                                        <div><span>Updated</span><strong><%= account.last_update || "-" %></strong></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="tasks-account-details">
-                            <div class="tasks-account-detail">
-                                <span>PUUID</span>
-                                <strong>7cc246ff-b83b-5737-9d88-b196d902dad2</strong>
+                            <div class="tasks-account-details">
+                                <div class="tasks-account-detail">
+                                    <span>PUUID</span>
+                                    <strong><%= account.puuid || "-" %></strong>
+                                </div>
+                                <div class="tasks-account-detail">
+                                    <span>last_update_raw</span>
+                                    <strong><%= account.last_update_raw ?? "-" %></strong>
+                                </div>
                             </div>
-                            <div class="tasks-account-detail">
-                                <span>last_update_raw</span>
-                                <strong>1774487992</strong>
-                            </div>
-                        </div>
 
-                        <div class="tasks-account-json">
-                            <span class="tasks-account-json-label">Raw JSON</span>
-                            <pre class="tasks-account-json-body">{
-  "status": 200,
-  "data": {
-    "puuid": "...",
-    "region": "ap",
-    "account_level": 289,
-    "name": "信じるべきは女より筋肉",
-    "tag": "脚トレ",
-    "card": {
-      "small": "...",
-      "large": "...",
-      "wide": "...",
-      "id": "a7e78a56-4557-383e-72a1-95ae97bcf2c1"
-    },
-    "last_update": "0 minutes ago",
-    "last_update_raw": 1774487992
-  }
-}</pre>
+                            <div class="tasks-account-json">
+                                <span class="tasks-account-json-label">Raw JSON</span>
+                                <pre class="tasks-account-json-body"><%= rawJsonText %></pre>
+                            </div>
                         </div>
-                    </div>
+                    <% } else { %>
+                        <div class="tasks-account-preview">
+                            <div class="tasks-account-detail">
+                                <span>Ready</span>
+                                <strong>Enter Riot ID and Tag to show the account result here.</strong>
+                            </div>
+                        </div>
+                    <% } %>
                 </article>
             </section>
 
@@ -132,15 +145,15 @@
                     <div class="tasks-architect-list">
                         <div class="tasks-architect-item">
                             <strong>Availability Check</strong>
-                            <p>当日の参加可能時間を確認し、開始候補を整理します。</p>
+                            <p>Use the search panel to pull an account snapshot and inspect the response.</p>
                         </div>
                         <div class="tasks-architect-item">
                             <strong>Role Assignment</strong>
-                            <p>担当の重複や不足を見ながら役割を調整します。</p>
+                            <p>Keep the account card visible while comparing region, level, and update time.</p>
                         </div>
                         <div class="tasks-architect-item">
                             <strong>Task Queue Review</strong>
-                            <p>次に進めるべき項目と優先度を確認します。</p>
+                            <p>Use the raw JSON panel when you need fields that are not shown in the summary card.</p>
                         </div>
                     </div>
                 </article>

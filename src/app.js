@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const path = require("path");
 const authRoutes = require("./routes/auth");
-const { requireLogin, redirectIfLoggedIn  } = require("./middleware/auth");
+const taskRoutes = require("./routes/task");
+const { redirectIfLoggedIn  } = require("./middleware/auth");
 
 require("dotenv").config({ path: path.join(__dirname, "../config/.env") });
 
@@ -48,6 +49,7 @@ app.use((req, res, next) => {
 });
 
 app.use(authRoutes);
+app.use(taskRoutes);
 
 app.get("/", (req, res) => {
     res.render("index");
@@ -64,10 +66,6 @@ app.get("/register", redirectIfLoggedIn, (req, res) => {
     res.render("register");
 }); 
 
-
-app.get("/tasks", requireLogin, (req, res) => {
-    res.render("tasks");
-});
 
 app.listen(PORT, () => {
     console.log("Server running on port " + PORT);
