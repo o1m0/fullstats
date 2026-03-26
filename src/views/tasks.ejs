@@ -44,6 +44,85 @@
                 </article>
             </section>
 
+            <section class="tasks-architect-grid tasks-architect-grid-account">
+                <article class="tasks-architect-panel">
+                    <div class="tasks-architect-panel-head">
+                        <span>Lookup</span>
+                        <strong>Riot Account</strong>
+                    </div>
+
+                    <form class="tasks-account-form" action="/search" method="POST">
+                        <div class="tasks-account-field">
+                            <label for="riot-name" class="tasks-account-label">Riot ID</label>
+                            <input id="riot-name" name="riotName" type="text" class="form-control tasks-account-input" placeholder="信じるべきは女より筋肉">
+                        </div>
+                        <div class="tasks-account-field">
+                            <label for="riot-tag" class="tasks-account-label">Tag</label>
+                            <input id="riot-tag" name="riotTag" type="text" class="form-control tasks-account-input" placeholder="脚トレ">
+                        </div>
+                        <button type="submit" class="btn tasks-architect-button is-primary">Search</button>
+                    </form>
+                </article>
+
+                <article class="tasks-architect-panel tasks-architect-panel-wide">
+                    <div class="tasks-architect-panel-head">
+                        <span>Result</span>
+                        <strong>Account Preview</strong>
+                    </div>
+
+                    <div class="tasks-account-preview">
+                        <div class="tasks-account-card">
+                            <div class="tasks-account-card-media">
+                                <img src="https://media.valorant-api.com/playercards/a7e78a56-4557-383e-72a1-95ae97bcf2c1/wideart.png" alt="Player card preview" class="tasks-account-card-image">
+                            </div>
+                            <div class="tasks-account-card-body">
+                                <p class="tasks-account-caption">Account</p>
+                                <h2 class="tasks-account-name">信じるべきは女より筋肉</h2>
+                                <p class="tasks-account-tag">#脚トレ</p>
+                                <div class="tasks-account-meta">
+                                    <div><span>Region</span><strong>ap</strong></div>
+                                    <div><span>Level</span><strong>289</strong></div>
+                                    <div><span>Updated</span><strong>0 minutes ago</strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tasks-account-details">
+                            <div class="tasks-account-detail">
+                                <span>PUUID</span>
+                                <strong>7cc246ff-b83b-5737-9d88-b196d902dad2</strong>
+                            </div>
+                            <div class="tasks-account-detail">
+                                <span>last_update_raw</span>
+                                <strong>1774487992</strong>
+                            </div>
+                        </div>
+
+                        <div class="tasks-account-json">
+                            <span class="tasks-account-json-label">Raw JSON</span>
+                            <pre class="tasks-account-json-body">{
+  "status": 200,
+  "data": {
+    "puuid": "...",
+    "region": "ap",
+    "account_level": 289,
+    "name": "信じるべきは女より筋肉",
+    "tag": "脚トレ",
+    "card": {
+      "small": "...",
+      "large": "...",
+      "wide": "...",
+      "id": "a7e78a56-4557-383e-72a1-95ae97bcf2c1"
+    },
+    "last_update": "0 minutes ago",
+    "last_update_raw": 1774487992
+  }
+}</pre>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
             <section class="tasks-architect-grid">
                 <article class="tasks-architect-panel tasks-architect-panel-wide">
                     <div class="tasks-architect-panel-head">
