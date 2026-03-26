@@ -14,9 +14,28 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
-    riotId: {
-      gameName: String, // 例: TenZ
-      tagLine: String,  // 例: NA1
+    valorantProfile: {
+      gameName: { type: String, required: true },
+      tagLine: { type: String, required: true },
+      puuid: { type: String, required: true, unique: true },
+
+      region: {
+        type: String,
+        enum: ["ap", "na", "eu", "kr"],
+        required: true
+      },
+
+      accountLevel: Number,
+
+      card: {
+        small: String,
+        large: String,
+        wide: String,
+        id: String
+      },
+
+      lastUpdate: Date,     
+      lastUpdateRaw: Number
     },
   },
   { timestamps: true }
