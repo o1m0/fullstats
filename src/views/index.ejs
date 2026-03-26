@@ -1,185 +1,92 @@
-<%- include('partials/header', { title: 'TOP', css: 'home.css', js: 'index.js', isLoggedIn }) %>
+<%- include('partials/header', { title: 'TOP', css: 'home.css', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
-<main class="home-page">
+<main class="home-page home-architect-page">
     <div class="container site-container">
-        <section class="arena-shell">
-            <div class="arena-main" data-arena-main>
-                <div class="arena-ambient" aria-hidden="true">
-                    <span class="ambient-orb ambient-orb-cyan"></span>
-                    <span class="ambient-orb ambient-orb-lime"></span>
-                    <span class="ambient-ring ambient-ring-one"></span>
-                    <span class="ambient-ring ambient-ring-two"></span>
-                    <span class="ambient-scan"></span>
-                    <span class="ambient-grid-glow"></span>
-                    <span class="ambient-floor"></span>
-                    <span class="ambient-floor-beam ambient-floor-beam-one"></span>
-                    <span class="ambient-floor-beam ambient-floor-beam-two"></span>
-                    <span class="ambient-floor-pulse"></span>
-                    <span class="ambient-floor-noise"></span>
+        <section class="home-architect-shell">
+            <div class="home-architect-hero">
+                <div class="home-architect-eyebrow">
+                    <span>FULLSTATS</span>
+                    <span>TEAM CONTROL PANEL</span>
                 </div>
 
-                <div class="arena-topbar">
-                    <a href="/" class="arena-brand">
-                        <span class="arena-brand-mark">FS</span>
-                        <span class="arena-brand-copy">FULLSTATS</span>
-                    </a>
-                    <div class="arena-topbar-actions">
-                        <a href="/tasks" class="arena-mini-link">&#12479;&#12473;&#12463;</a>
-                        <% if (isLoggedIn) { %>
-                            <form action="/logout" method="POST" class="arena-inline-form">
-                                <button type="submit" class="btn arena-mini-button">&#12525;&#12464;&#12450;&#12454;&#12488;</button>
-                            </form>
-                        <% } else { %>
-                            <a href="/login" class="btn arena-mini-button">&#12525;&#12464;&#12452;&#12531;</a>
-                        <% } %>
-                    </div>
-                </div>
-
-                <div class="arena-core">
-                    <h1 class="arena-title" data-glitch-text="FULLSTATS" aria-label="FULLSTATS">
-                        <span class="arena-title-letter" style="--letter-index: 0">F</span>
-                        <span class="arena-title-letter" style="--letter-index: 1">U</span>
-                        <span class="arena-title-letter" style="--letter-index: 2">L</span>
-                        <span class="arena-title-letter" style="--letter-index: 3">L</span>
-                        <span class="arena-title-letter" style="--letter-index: 4">S</span>
-                        <span class="arena-title-letter" style="--letter-index: 5">T</span>
-                        <span class="arena-title-letter" style="--letter-index: 6">A</span>
-                        <span class="arena-title-letter" style="--letter-index: 7">T</span>
-                        <span class="arena-title-letter" style="--letter-index: 8">S</span>
+                <div class="home-architect-copy">
+                    <p class="home-architect-lead">Overview</p>
+                    <h1 class="home-architect-title">
+                        チーム運用を、
+                        <br>
+                        静かに整理する。
                     </h1>
+                    <p class="home-architect-text">
+                        参加可能時間、ロール整理、進行中のタスクをひとつの画面で確認するための
+                        シンプルな管理トップです。
+                    </p>
+                </div>
 
-                    <div class="arena-actions">
-                        <% if (isLoggedIn) { %>
-                            <a href="/tasks" class="btn arena-primary">&#20837;&#12427;</a>
-                        <% } else { %>
-                            <a href="/login" class="btn arena-primary">&#12525;&#12464;&#12452;&#12531;</a>
-                        <% } %>
-                        <span class="arena-badge" data-status-badge><%= isLoggedIn ? '接続中' : 'ロック中' %></span>
-                    </div>
+                <div class="home-architect-actions">
+                    <% if (isLoggedIn) { %>
+                        <a href="/tasks" class="btn home-architect-primary">Workspace</a>
+                    <% } else { %>
+                        <a href="/login" class="btn home-architect-primary">Login</a>
+                    <% } %>
+                    <span class="home-architect-status"><%= isLoggedIn ? 'Connected' : 'Locked' %></span>
                 </div>
             </div>
 
-            <aside class="arena-side">
-                <article class="hud-card hud-status" data-tilt-card>
-                    <div class="hud-head">
-                        <span>7 DAYS</span>
-                        <strong>赤点回避ブラザーズ</strong>
+            <section class="home-architect-grid">
+                <article class="home-architect-panel home-architect-panel-large">
+                    <div class="home-architect-panel-head">
+                        <span>01</span>
+                        <strong>Current Overview</strong>
                     </div>
-                    <ul class="member-board" data-member-board>
-                        <li class="member-row">
-                            <span class="member-name">o1m0</span>
-                            <div class="member-week-head" aria-hidden="true">
-                                <span>24</span>
-                                <span>25</span>
-                                <span>26</span>
-                                <span>27</span>
-                                <span>28</span>
-                                <span>29</span>
-                                <span>30</span>
-                            </div>
-                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
-                                <strong class="member-state is-ready" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-ready" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-ready" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                            </div>
-                            <span class="member-time">10:00 - 18:00</span>
-                        </li>
-                        <li class="member-row">
-                            <span class="member-name">magoo</span>
-                            <div class="member-week-head" aria-hidden="true">
-                                <span>24</span>
-                                <span>25</span>
-                                <span>26</span>
-                                <span>27</span>
-                                <span>28</span>
-                                <span>29</span>
-                                <span>30</span>
-                            </div>
-                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
-                                <strong class="member-state is-hold" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-ready" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-hold" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-ready" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                            </div>
-                            <span class="member-time">-</span>
-                        </li>
-                        <li class="member-row">
-                            <span class="member-name">障害者</span>
-                            <div class="member-week-head" aria-hidden="true">
-                                <span>24</span>
-                                <span>25</span>
-                                <span>26</span>
-                                <span>27</span>
-                                <span>28</span>
-                                <span>29</span>
-                                <span>30</span>
-                            </div>
-                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
-                                <strong class="member-state is-ready" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-ready" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-hold" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                            </div>
-                            <span class="member-time">13:00 - 22:00</span>
-                        </li>
-                        <li class="member-row">
-                            <span class="member-name">yotumekami</span>
-                            <div class="member-week-head" aria-hidden="true">
-                                <span>24</span>
-                                <span>25</span>
-                                <span>26</span>
-                                <span>27</span>
-                                <span>28</span>
-                                <span>29</span>
-                                <span>30</span>
-                            </div>
-                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
-                                <strong class="member-state is-ready" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-ready" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                            </div>
-                            <span class="member-time">09:00 - 12:00</span>
-                        </li>
-                        <li class="member-row">
-                            <span class="member-name">EU</span>
-                            <div class="member-week-head" aria-hidden="true">
-                                <span>24</span>
-                                <span>25</span>
-                                <span>26</span>
-                                <span>27</span>
-                                <span>28</span>
-                                <span>29</span>
-                                <span>30</span>
-                            </div>
-                            <div class="member-week" aria-label="1&#36913;&#38291;&#12398;&#21487;&#21542;">
-                                <strong class="member-state is-hold" aria-label="1&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-hold" aria-label="2&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-ready" aria-label="3&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-ready" aria-label="4&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="5&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                                <strong class="member-state is-ready" aria-label="6&#26085;&#30446;: &#12391;&#12365;&#12427;"></strong>
-                                <strong class="member-state is-hold" aria-label="7&#26085;&#30446;: &#12391;&#12365;&#12394;&#12356;"></strong>
-                            </div>
-                            <span class="member-time">-</span>
-                        </li>
-                    </ul>
+                    <div class="home-architect-metrics">
+                        <div class="home-architect-metric">
+                            <span>Members</span>
+                            <strong>05</strong>
+                        </div>
+                        <div class="home-architect-metric">
+                            <span>Open Tasks</span>
+                            <strong>12</strong>
+                        </div>
+                        <div class="home-architect-metric">
+                            <span>Next Match</span>
+                            <strong>19:30</strong>
+                        </div>
+                    </div>
                 </article>
-            </aside>
+
+                <article class="home-architect-panel">
+                    <div class="home-architect-panel-head">
+                        <span>02</span>
+                        <strong>Availability</strong>
+                    </div>
+                    <p>当日の参加可能時間と開始候補を整理します。</p>
+                </article>
+
+                <article class="home-architect-panel">
+                    <div class="home-architect-panel-head">
+                        <span>03</span>
+                        <strong>Roles</strong>
+                    </div>
+                    <p>担当の重複や不足を確認し、配置を整えます。</p>
+                </article>
+
+                <article class="home-architect-panel">
+                    <div class="home-architect-panel-head">
+                        <span>04</span>
+                        <strong>Tasks</strong>
+                    </div>
+                    <p>次に進めるべき項目と優先度だけを一覧で確認します。</p>
+                </article>
+
+                <article class="home-architect-panel">
+                    <div class="home-architect-panel-head">
+                        <span>05</span>
+                        <strong>Notes</strong>
+                    </div>
+                    <p>試合前メモや更新履歴を残し、判断の流れを共有します。</p>
+                </article>
+            </section>
         </section>
     </div>
 </main>
-<%- include('partials/footer', { js: 'index.js' }) %>
+<%- include('partials/footer', { isLoggedIn }) %>
