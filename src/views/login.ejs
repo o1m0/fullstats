@@ -1,87 +1,49 @@
-<%- include('partials/header', { title: 'Login', css: 'home.css', js: 'index.js', isLoggedIn }) %>
+<%- include('partials/header', { title: 'Login', css: 'home.css', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
-<main class="home-page auth-login-page">
+<main class="home-page home-architect-page auth-architect-page">
     <div class="container site-container">
-        <section class="arena-shell arena-auth-shell">
-            <div class="arena-main arena-auth-main" data-arena-main>
-                <div class="arena-ambient" aria-hidden="true">
-                    <span class="ambient-orb ambient-orb-cyan"></span>
-                    <span class="ambient-orb ambient-orb-lime"></span>
-                    <span class="ambient-ring ambient-ring-one"></span>
-                    <span class="ambient-ring ambient-ring-two"></span>
-                    <span class="ambient-scan"></span>
-                    <span class="ambient-grid-glow"></span>
-                    <span class="ambient-floor"></span>
-                    <span class="ambient-floor-beam ambient-floor-beam-one"></span>
-                    <span class="ambient-floor-beam ambient-floor-beam-two"></span>
-                    <span class="ambient-floor-pulse"></span>
-                    <span class="ambient-floor-noise"></span>
-                </div>
-
-                <div class="arena-topbar arena-auth-topbar">
-                    <a href="/" class="arena-brand">
-                        <span class="arena-brand-mark">FS</span>
-                        <span class="arena-brand-copy">FULLSTATS</span>
-                    </a>
-                    <div class="arena-topbar-actions">
-                        <a href="/" class="arena-mini-link">Home</a>
-                        <a href="/register" class="btn arena-mini-button">Register</a>
-                    </div>
-                </div>
-
-                <div class="arena-core arena-auth-core">
-                    <div>
-                        <p class="arena-kicker">Member Access</p>
-                        <h1 class="arena-title arena-auth-title" data-glitch-text="LOGIN" aria-label="LOGIN">
-                            <span class="arena-title-letter" style="--letter-index: 0">L</span>
-                            <span class="arena-title-letter" style="--letter-index: 1">O</span>
-                            <span class="arena-title-letter" style="--letter-index: 2">G</span>
-                            <span class="arena-title-letter" style="--letter-index: 3">I</span>
-                            <span class="arena-title-letter" style="--letter-index: 4">N</span>
-                        </h1>
-                        <p class="arena-auth-copy">
-                            FullStatsにログインして、メンバーの予定確認やロール整理をすぐに再開できます。
-                        </p>
-                    </div>
-
-                    <% if (flash) { %>
-                        <div class="alert alert-danger arena-auth-alert" role="alert">
-                            <strong><%= flash.message %></strong>
-                            <% if (sessionData) { %>
-                                <pre class="arena-auth-session"><%= sessionData %></pre>
-                            <% } %>
-                        </div>
-                    <% } %>
-
-                    <form action="/login" method="POST" class="arena-auth-form">
-                        <div>
-                            <label for="login-username" class="arena-auth-label">Username</label>
-                            <input id="login-username" name="username" type="text" class="form-control arena-auth-input" placeholder="Username" required>
-                        </div>
-
-                        <div>
-                            <label for="login-password" class="arena-auth-label">Password</label>
-                            <input id="login-password" name="password" type="password" class="form-control arena-auth-input" placeholder="Password" required>
-                        </div>
-
-                        <div class="arena-actions arena-auth-actions">
-                            <button type="submit" class="btn arena-primary arena-auth-submit">Login</button>
-                            <span class="arena-badge" data-status-badge>Ready</span>
-                        </div>
-                    </form>
-
-                    <div class="arena-strip">
-                        <span>Party Sync</span>
-                        <span>Role Ready</span>
-                        <span>Schedule View</span>
-                    </div>
-
-                    <p class="arena-auth-note">
-                        No account yet? <a href="/register">Create one here</a>.
-                    </p>
-                </div>
+        <section class="auth-architect-shell">
+            <div class="auth-architect-copy">
+                <p class="home-architect-lead">Member Access</p>
+                <h1 class="home-architect-title">ログイン</h1>
+                <p class="home-architect-text">
+                    チームの参加状況、ロール整理、タスク確認のための
+                    管理画面にアクセスします。
+                </p>
             </div>
+
+            <article class="auth-architect-panel">
+                <% if (flash) { %>
+                    <div class="auth-architect-alert" role="alert">
+                        <strong><%= flash.message %></strong>
+                        <% if (sessionData) { %>
+                            <pre class="auth-architect-session"><%= sessionData %></pre>
+                        <% } %>
+                    </div>
+                <% } %>
+
+                <form action="/login" method="POST" class="auth-architect-form">
+                    <div class="auth-architect-field">
+                        <label for="login-username" class="auth-architect-label">Username</label>
+                        <input id="login-username" name="username" type="text" class="form-control auth-architect-input" placeholder="Username" required>
+                    </div>
+
+                    <div class="auth-architect-field">
+                        <label for="login-password" class="auth-architect-label">Password</label>
+                        <input id="login-password" name="password" type="password" class="form-control auth-architect-input" placeholder="Password" required>
+                    </div>
+
+                    <div class="auth-architect-actions">
+                        <button type="submit" class="btn home-architect-primary">Login</button>
+                        <span class="home-architect-status"><%= isLoggedIn ? 'Connected' : 'Locked' %></span>
+                    </div>
+                </form>
+
+                <p class="auth-architect-note">
+                    アカウントをお持ちでない場合は、<a href="/register">新規登録</a>へ進んでください。
+                </p>
+            </article>
         </section>
     </div>
 </main>
-<%- include('partials/footer', { js: 'index.js', isLoggedIn }) %>
+<%- include('partials/footer', { isLoggedIn }) %>

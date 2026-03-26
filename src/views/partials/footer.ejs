@@ -2,16 +2,17 @@
     <div class="container site-container">
         <div class="footer-bar">
             <div class="footer-mark">
-                <span class="footer-badge">限定モード</span>
+                <span class="footer-badge">Team Control Panel</span>
                 <a href="/" class="footer-logo">FullStats</a>
             </div>
             <div class="footer-links">
                 <a href="/">ホーム</a>
                 <a href="/tasks">タスク</a>
                 <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
-                    <span>オンライン</span>
+                    <span>ログイン中</span>
                 <% } else { %>
                     <a href="/login">ログイン</a>
+                    <a href="/register">新規登録</a>
                 <% } %>
             </div>
             <p class="footer-copy">&copy; 2026 FullStats</p>

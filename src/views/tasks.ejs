@@ -1,202 +1,93 @@
 <%- include('partials/header', { title: 'Tasks', css: 'tasks.css', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
-<main class="tasks-page">
+<main class="tasks-page tasks-architect-page">
     <div class="container site-container">
-        <section class="tasks-shell">
-            <section class="tasks-hero-panel">
-                <div class="tasks-ambient" aria-hidden="true">
-                    <span class="tasks-orb tasks-orb-cyan"></span>
-                    <span class="tasks-orb tasks-orb-lime"></span>
-                    <span class="tasks-grid-glow"></span>
-                </div>
-
-                <div class="tasks-hero-copy">
-                    <p class="tasks-kicker">Team Workspace</p>
-                    <h1 class="tasks-title">TASK BOARD</h1>
-                    <p class="tasks-text">
-                        その日の編成確認、担当整理、次の試合準備までをひとつの画面で進められる
-                        FullStatsのワークスペースです。
+        <section class="tasks-architect-shell">
+            <section class="tasks-architect-hero">
+                <div class="tasks-architect-copy">
+                    <p class="tasks-architect-lead">Workspace</p>
+                    <h1 class="tasks-architect-title">Task Overview</h1>
+                    <p class="tasks-architect-text">
+                        参加状況、ロール整理、進行中タスクを
+                        一覧で確認するための管理画面です。
                     </p>
-
-                    <div class="tasks-hero-actions">
-                        <a href="/" class="btn tasks-btn tasks-btn-secondary">Home</a>
-                        <% if (isLoggedIn) { %>
-                            <form action="/logout" method="POST" class="tasks-inline-form">
-                                <button type="submit" class="btn tasks-btn tasks-btn-primary">Logout</button>
-                            </form>
-                        <% } else { %>
-                            <a href="/login" class="btn tasks-btn tasks-btn-primary">Login</a>
-                        <% } %>
-                    </div>
                 </div>
 
-                <div class="tasks-hero-side">
-                    <article class="tasks-highlight-card">
-                        <span class="tasks-card-label">Today</span>
-                        <strong class="tasks-highlight-title">Focus Queue</strong>
-                        <ul class="tasks-focus-list">
-                            <li>Lineup check before scrim</li>
-                            <li>Role handoff for support lane</li>
-                            <li>Map priority update for next block</li>
-                        </ul>
-                    </article>
+                <div class="tasks-architect-actions">
+                    <a href="/" class="btn tasks-architect-button is-secondary">Home</a>
+                    <% if (isLoggedIn) { %>
+                        <form action="/logout" method="POST" class="tasks-architect-inline-form">
+                            <button type="submit" class="btn tasks-architect-button is-primary">Logout</button>
+                        </form>
+                    <% } else { %>
+                        <a href="/login" class="btn tasks-architect-button is-primary">Login</a>
+                    <% } %>
                 </div>
             </section>
 
-            <section class="tasks-metrics">
-                <article class="tasks-metric-card">
+            <section class="tasks-architect-metrics">
+                <article class="tasks-architect-metric">
                     <span>Members</span>
                     <strong>05</strong>
                 </article>
-                <article class="tasks-metric-card">
+                <article class="tasks-architect-metric">
                     <span>Open Tasks</span>
                     <strong>12</strong>
                 </article>
-                <article class="tasks-metric-card">
+                <article class="tasks-architect-metric">
                     <span>Ready Slots</span>
                     <strong>08</strong>
                 </article>
-                <article class="tasks-metric-card">
+                <article class="tasks-architect-metric">
                     <span>Next Match</span>
                     <strong>19:30</strong>
                 </article>
             </section>
 
-            <section class="tasks-board">
-                <article class="tasks-panel tasks-panel-wide">
-                    <div class="tasks-panel-head">
-                        <div>
-                            <span class="tasks-panel-kicker">Workflow</span>
-                            <h2 class="tasks-panel-title">Current Task Flow</h2>
-                        </div>
-                        <span class="tasks-panel-badge">Live</span>
+            <section class="tasks-architect-grid">
+                <article class="tasks-architect-panel tasks-architect-panel-wide">
+                    <div class="tasks-architect-panel-head">
+                        <span>01</span>
+                        <strong>Current Workflow</strong>
                     </div>
-
-                    <div class="tasks-flow-list">
-                        <article class="tasks-flow-item">
-                            <span class="tasks-flow-step">01</span>
-                            <div>
-                                <strong>Lineup Review</strong>
-                                <p>今いるメンバーで組める5人編成を確認して、開始候補を絞り込みます。</p>
-                            </div>
-                        </article>
-                        <article class="tasks-flow-item">
-                            <span class="tasks-flow-step">02</span>
-                            <div>
-                                <strong>Role Assignment</strong>
-                                <p>ロール重複や不足を見ながら、その日の担当を調整します。</p>
-                            </div>
-                        </article>
-                        <article class="tasks-flow-item">
-                            <span class="tasks-flow-step">03</span>
-                            <div>
-                                <strong>Map Planning</strong>
-                                <p>直近の戦績や相性を見て、優先マップを更新します。</p>
-                            </div>
-                        </article>
-                        <article class="tasks-flow-item">
-                            <span class="tasks-flow-step">04</span>
-                            <div>
-                                <strong>Final Check</strong>
-                                <p>開始前に空き時間と準備状況を確認して、進行を固めます。</p>
-                            </div>
-                        </article>
-                    </div>
-                </article>
-
-                <article class="tasks-panel">
-                    <div class="tasks-panel-head">
-                        <div>
-                            <span class="tasks-panel-kicker">Status</span>
-                            <h2 class="tasks-panel-title">Session Pulse</h2>
+                    <div class="tasks-architect-list">
+                        <div class="tasks-architect-item">
+                            <strong>Availability Check</strong>
+                            <p>当日の参加可能時間を確認し、開始候補を整理します。</p>
                         </div>
-                    </div>
-
-                    <div class="tasks-status-stack">
-                        <div class="tasks-status-row">
-                            <span>Lineup Ready</span>
-                            <strong>4 / 5</strong>
+                        <div class="tasks-architect-item">
+                            <strong>Role Assignment</strong>
+                            <p>担当の重複や不足を見ながら役割を調整します。</p>
                         </div>
-                        <div class="tasks-status-row">
-                            <span>Role Balance</span>
-                            <strong>Stable</strong>
-                        </div>
-                        <div class="tasks-status-row">
-                            <span>Map Prep</span>
-                            <strong>Updating</strong>
-                        </div>
-                        <div class="tasks-status-row">
-                            <span>Voice Check</span>
-                            <strong>Done</strong>
+                        <div class="tasks-architect-item">
+                            <strong>Task Queue Review</strong>
+                            <p>次に進めるべき項目と優先度を確認します。</p>
                         </div>
                     </div>
                 </article>
 
-                <article class="tasks-panel">
-                    <div class="tasks-panel-head">
-                        <div>
-                            <span class="tasks-panel-kicker">Modules</span>
-                            <h2 class="tasks-panel-title">Workspace Blocks</h2>
-                        </div>
+                <article class="tasks-architect-panel">
+                    <div class="tasks-architect-panel-head">
+                        <span>02</span>
+                        <strong>Status</strong>
                     </div>
-
-                    <div class="tasks-module-grid">
-                        <article class="tasks-module-card">
-                            <span>01</span>
-                            <strong>Lineup</strong>
-                            <p>勝率ベースで候補編成を整理。</p>
-                        </article>
-                        <article class="tasks-module-card">
-                            <span>02</span>
-                            <strong>Roles</strong>
-                            <p>担当の被りと不足を確認。</p>
-                        </article>
-                        <article class="tasks-module-card">
-                            <span>03</span>
-                            <strong>Maps</strong>
-                            <p>優先順と避け候補を更新。</p>
-                        </article>
-                        <article class="tasks-module-card">
-                            <span>04</span>
-                            <strong>Players</strong>
-                            <p>個別メモと最近の状態を見る。</p>
-                        </article>
+                    <div class="tasks-architect-stack">
+                        <div class="tasks-architect-row"><span>Lineup</span><strong>Ready</strong></div>
+                        <div class="tasks-architect-row"><span>Roles</span><strong>Stable</strong></div>
+                        <div class="tasks-architect-row"><span>Maps</span><strong>Updating</strong></div>
                     </div>
                 </article>
 
-                <article class="tasks-panel tasks-panel-wide">
-                    <div class="tasks-panel-head">
-                        <div>
-                            <span class="tasks-panel-kicker">Queue</span>
-                            <h2 class="tasks-panel-title">Next Actions</h2>
-                        </div>
+                <article class="tasks-architect-panel">
+                    <div class="tasks-architect-panel-head">
+                        <span>03</span>
+                        <strong>Sections</strong>
                     </div>
-
-                    <div class="tasks-queue">
-                        <div class="tasks-queue-item is-active">
-                            <span class="tasks-queue-dot"></span>
-                            <div>
-                                <strong>Support role confirm</strong>
-                                <p>Open now</p>
-                            </div>
-                            <span class="tasks-queue-tag">Priority</span>
-                        </div>
-                        <div class="tasks-queue-item">
-                            <span class="tasks-queue-dot"></span>
-                            <div>
-                                <strong>Map ban memo refresh</strong>
-                                <p>10 min ago</p>
-                            </div>
-                            <span class="tasks-queue-tag">Review</span>
-                        </div>
-                        <div class="tasks-queue-item">
-                            <span class="tasks-queue-dot"></span>
-                            <div>
-                                <strong>Starter list share</strong>
-                                <p>Waiting</p>
-                            </div>
-                            <span class="tasks-queue-tag">Pending</span>
-                        </div>
+                    <div class="tasks-architect-sections">
+                        <div>Availability Board</div>
+                        <div>Role Management</div>
+                        <div>Task Queue</div>
+                        <div>Session Notes</div>
                     </div>
                 </article>
             </section>

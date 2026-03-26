@@ -2,14 +2,10 @@
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const body = document.body;
   const header = document.querySelector(".site-header");
-  const isTasksPage = !!document.querySelector(".tasks-page");
 
   body.classList.add("js-ready");
   if (!prefersReducedMotion) {
     body.classList.add("motion-ready");
-  }
-  if (isTasksPage) {
-    body.classList.add("tasks-screen");
   }
 
   const updateHeader = () => {
