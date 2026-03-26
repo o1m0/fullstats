@@ -22,7 +22,7 @@
                     <p class="simple-eyebrow">Tasks</p>
                     <h1 class="simple-title">Task Management</h1>
                     <p class="simple-text">
-                        Search a Riot account and review the response in a simple admin layout.
+                        Fetch a Riot account and save the result into the logged-in user's profile.
                     </p>
                 </div>
             </header>
@@ -31,11 +31,11 @@
                 <aside class="col-lg-4 tasks-sidebar">
                     <article class="card shadow-sm border-0 tasks-panel">
                         <div class="tasks-panel-head">
-                            <p class="tasks-panel-label">Search</p>
-                            <h2 class="tasks-panel-title">Account Search</h2>
+                            <p class="tasks-panel-label">Save</p>
+                            <h2 class="tasks-panel-title">Save Account Data</h2>
                         </div>
 
-                        <form class="vstack gap-3 tasks-form" action="/tasks" method="GET">
+                        <form class="vstack gap-3 tasks-form" action="/tasks" method="POST">
                             <div>
                                 <label for="gameName" class="form-label tasks-label">Riot ID</label>
                                 <input
@@ -63,7 +63,7 @@
                             </div>
 
                             <div class="tasks-form-actions d-grid">
-                                <button type="submit" class="btn btn-dark simple-button">Search</button>
+                                <button type="submit" class="btn btn-dark simple-button">Fetch And Save</button>
                             </div>
                         </form>
                     </article>
@@ -75,8 +75,8 @@
                         </div>
 
                         <ul class="tasks-note-list">
-                            <li>The search form, summary, and raw JSON are separated into individual panels.</li>
-                            <li>The layout follows the same minimal style as the other pages.</li>
+                            <li>Submitting the form fetches account data from the API and stores it in `User.valorantProfile`.</li>
+                            <li>The overview panel displays the saved profile for the current logged-in user.</li>
                             <li>The summary uses the `summaryItems` array, making fields easy to add or remove.</li>
                         </ul>
                     </article>
@@ -86,8 +86,15 @@
                     <article class="card shadow-sm border-0 tasks-panel">
                         <div class="tasks-panel-head">
                             <p class="tasks-panel-label">Overview</p>
-                            <h2 class="tasks-panel-title">Result Summary</h2>
+                            <h2 class="tasks-panel-title">Saved Profile Summary</h2>
                         </div>
+
+                        <% if (success) { %>
+                            <div class="alert alert-success tasks-alert">
+                                <strong>Saved</strong>
+                                <p><%= success %></p>
+                            </div>
+                        <% } %>
 
                         <% if (error) { %>
                             <div class="alert alert-danger tasks-alert tasks-alert-error">
@@ -97,7 +104,7 @@
                         <% } else if (!account) { %>
                             <div class="alert alert-secondary tasks-alert">
                                 <strong>Ready</strong>
-                                <p>Enter Riot ID and Tag to display the account summary here.</p>
+                                <p>Enter Riot ID and Tag to fetch data and save it to your user profile.</p>
                             </div>
                         <% } %>
 
@@ -134,14 +141,14 @@
                     <article class="card shadow-sm border-0 tasks-panel">
                         <div class="tasks-panel-head">
                             <p class="tasks-panel-label">Raw Data</p>
-                            <h2 class="tasks-panel-title">JSON Details</h2>
+                            <h2 class="tasks-panel-title">Saved JSON Details</h2>
                         </div>
 
                         <% if (rawJsonText) { %>
                             <pre class="tasks-code"><%= rawJsonText %></pre>
                         <% } else { %>
                             <div class="tasks-empty">
-                                The API response JSON will appear here.
+                                Saved profile data will appear here.
                             </div>
                         <% } %>
                     </article>
