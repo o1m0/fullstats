@@ -1,39 +1,37 @@
 <%- include('partials/header', { title: 'Register', css: 'home.css', isLoggedIn }) %>
 <%- include('partials/nav', { isLoggedIn }) %>
-<main class="home-page home-architect-page auth-architect-page">
+<main class="simple-page">
     <div class="container site-container">
-        <section class="auth-architect-shell">
-            <div class="auth-architect-copy">
-                <p class="home-architect-lead">New Member</p>
-                <h1 class="home-architect-title">新規登録</h1>
-                <p class="home-architect-text">
-                    FullStats の管理画面を利用するための
-                    アカウント情報を登録します。
+        <section class="row g-3 auth-page-shell">
+            <div class="col-lg-7 auth-page-copy">
+                <p class="simple-eyebrow">Account</p>
+                <h1 class="simple-title">Register</h1>
+                <p class="simple-text">
+                    Create a new account for the admin pages.
                 </p>
             </div>
 
-            <article class="auth-architect-panel">
-                <form action="/register" method="POST" class="auth-architect-form">
-                    <div class="auth-architect-field">
-                        <label for="register-username" class="auth-architect-label">Username</label>
-                        <input id="register-username" name="username" type="text" class="form-control auth-architect-input" placeholder="Username" required>
+            <div class="col-lg-5">
+            <article class="card shadow-sm border-0 auth-card">
+                <form action="/register" method="POST" class="vstack gap-3 auth-form">
+                    <div>
+                        <label for="register-username" class="form-label auth-label">Username</label>
+                        <input id="register-username" name="username" type="text" class="form-control auth-input" placeholder="Username" required>
                     </div>
 
-                    <div class="auth-architect-field">
-                        <label for="register-password" class="auth-architect-label">Password</label>
-                        <input id="register-password" name="password" type="password" class="form-control auth-architect-input" placeholder="Password" required>
+                    <div>
+                        <label for="register-password" class="form-label auth-label">Password</label>
+                        <input id="register-password" name="password" type="password" class="form-control auth-input" placeholder="Password" required>
                     </div>
 
-                    <div class="auth-architect-actions">
-                        <button type="submit" class="btn home-architect-primary">Register</button>
-                        <span class="home-architect-status">Setup</span>
-                    </div>
+                    <button type="submit" class="btn btn-dark simple-button auth-submit">Register</button>
                 </form>
 
-                <p class="auth-architect-note">
-                    すでにアカウントをお持ちの場合は、<a href="/login">ログイン</a>してください。
+                <p class="auth-note">
+                    Already have an account? <a href="/login">Login here</a>.
                 </p>
             </article>
+            </div>
         </section>
     </div>
 </main>

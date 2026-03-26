@@ -4,184 +4,148 @@
     const account = accountData || null;
     const rawJsonText = rawJson ? JSON.stringify(rawJson, null, 2) : "";
     const cardImage = account && account.card && (account.card.wide || account.card.large || account.card.small);
+    const summaryItems = [
+        { label: 'Riot ID', value: account ? (account.name || gameName || '-') : (gameName || '-') },
+        { label: 'Tag', value: account ? ('#' + (account.tag || tagLine || '-')) : (tagLine ? '#' + tagLine : '-') },
+        { label: 'Region', value: account && account.region ? account.region : '-' },
+        { label: 'Account Level', value: account && account.account_level != null ? account.account_level : '-' },
+        { label: 'Last Updated', value: account && account.last_update ? account.last_update : '-' },
+        { label: 'PUUID', value: account && account.puuid ? account.puuid : '-' },
+        { label: 'last_update_raw', value: account && account.last_update_raw != null ? account.last_update_raw : '-' }
+    ];
 %>
-<main class="tasks-page tasks-architect-page">
+<main class="simple-page tasks-page">
     <div class="container site-container">
-        <section class="tasks-architect-shell">
-            <section class="tasks-architect-hero">
-                <div class="tasks-architect-copy">
-                    <p class="tasks-architect-lead">Workspace</p>
-                    <h1 class="tasks-architect-title">Task Overview</h1>
-                    <p class="tasks-architect-text">
-                        Search a Riot account and review the returned JSON without leaving this page.
+        <section class="tasks-shell">
+            <header class="card shadow-sm border-0 simple-hero tasks-hero">
+                <div>
+                    <p class="simple-eyebrow">Tasks</p>
+                    <h1 class="simple-title">Task Management</h1>
+                    <p class="simple-text">
+                        Search a Riot account and review the response in a simple admin layout.
                     </p>
                 </div>
+            </header>
 
-                <div class="tasks-architect-actions">
-                    <a href="/" class="btn tasks-architect-button is-secondary">Home</a>
-                    <% if (isLoggedIn) { %>
-                        <form action="/logout" method="POST" class="tasks-architect-inline-form">
-                            <button type="submit" class="btn tasks-architect-button is-primary">Logout</button>
+            <section class="row g-3 tasks-layout">
+                <aside class="col-lg-4 tasks-sidebar">
+                    <article class="card shadow-sm border-0 tasks-panel">
+                        <div class="tasks-panel-head">
+                            <p class="tasks-panel-label">Search</p>
+                            <h2 class="tasks-panel-title">Account Search</h2>
+                        </div>
+
+                        <form class="vstack gap-3 tasks-form" action="/tasks" method="GET">
+                            <div>
+                                <label for="gameName" class="form-label tasks-label">Riot ID</label>
+                                <input
+                                    id="gameName"
+                                    name="gameName"
+                                    type="text"
+                                    class="form-control tasks-input"
+                                    value="<%= gameName || '' %>"
+                                    placeholder="PlayerName"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label for="tagLine" class="form-label tasks-label">Tag</label>
+                                <input
+                                    id="tagLine"
+                                    name="tagLine"
+                                    type="text"
+                                    class="form-control tasks-input"
+                                    value="<%= tagLine || '' %>"
+                                    placeholder="TagLine"
+                                    required
+                                >
+                            </div>
+
+                            <div class="tasks-form-actions d-grid">
+                                <button type="submit" class="btn btn-dark simple-button">Search</button>
+                            </div>
                         </form>
-                    <% } else { %>
-                        <a href="/login" class="btn tasks-architect-button is-primary">Login</a>
-                    <% } %>
+                    </article>
+
+                    <article class="card shadow-sm border-0 tasks-panel">
+                        <div class="tasks-panel-head">
+                            <p class="tasks-panel-label">Notes</p>
+                            <h2 class="tasks-panel-title">Editing Notes</h2>
+                        </div>
+
+                        <ul class="tasks-note-list">
+                            <li>The search form, summary, and raw JSON are separated into individual panels.</li>
+                            <li>The layout follows the same minimal style as the other pages.</li>
+                            <li>The summary uses the `summaryItems` array, making fields easy to add or remove.</li>
+                        </ul>
+                    </article>
+                </aside>
+
+                <div class="col-lg-8 tasks-main">
+                    <article class="card shadow-sm border-0 tasks-panel">
+                        <div class="tasks-panel-head">
+                            <p class="tasks-panel-label">Overview</p>
+                            <h2 class="tasks-panel-title">Result Summary</h2>
+                        </div>
+
+                        <% if (error) { %>
+                            <div class="alert alert-danger tasks-alert tasks-alert-error">
+                                <strong>Error</strong>
+                                <p><%= error %></p>
+                            </div>
+                        <% } else if (!account) { %>
+                            <div class="alert alert-secondary tasks-alert">
+                                <strong>Ready</strong>
+                                <p>Enter Riot ID and Tag to display the account summary here.</p>
+                            </div>
+                        <% } %>
+
+                        <div class="row g-3 align-items-start tasks-summary">
+                            <div class="col-lg-4 tasks-summary-media">
+                                <% if (cardImage) { %>
+                                    <img src="<%= cardImage %>" alt="Player card preview" class="tasks-card-image">
+                                <% } else { %>
+                                    <div class="tasks-card-placeholder">No Image</div>
+                                <% } %>
+                            </div>
+
+                            <div class="col-lg-8 tasks-summary-content">
+                                <div class="tasks-identity">
+                                    <p class="tasks-identity-label">Account</p>
+                                    <h3 class="tasks-identity-name"><%= account ? (account.name || gameName) : 'Account Preview' %></h3>
+                                    <p class="tasks-identity-tag"><%= account ? ('#' + (account.tag || tagLine || '-')) : '#TagLine' %></p>
+                                </div>
+
+                                <div class="row g-3 tasks-info-grid">
+                                    <% summaryItems.forEach((item) => { %>
+                                        <div class="col-md-6">
+                                        <div class="tasks-info-item">
+                                            <span><%= item.label %></span>
+                                            <strong><%= item.value %></strong>
+                                        </div>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card shadow-sm border-0 tasks-panel">
+                        <div class="tasks-panel-head">
+                            <p class="tasks-panel-label">Raw Data</p>
+                            <h2 class="tasks-panel-title">JSON Details</h2>
+                        </div>
+
+                        <% if (rawJsonText) { %>
+                            <pre class="tasks-code"><%= rawJsonText %></pre>
+                        <% } else { %>
+                            <div class="tasks-empty">
+                                The API response JSON will appear here.
+                            </div>
+                        <% } %>
+                    </article>
                 </div>
-            </section>
-
-            <section class="tasks-architect-metrics">
-                <article class="tasks-architect-metric">
-                    <span>Members</span>
-                    <strong>05</strong>
-                </article>
-                <article class="tasks-architect-metric">
-                    <span>Open Tasks</span>
-                    <strong>12</strong>
-                </article>
-                <article class="tasks-architect-metric">
-                    <span>Ready Slots</span>
-                    <strong>08</strong>
-                </article>
-                <article class="tasks-architect-metric">
-                    <span>Next Match</span>
-                    <strong>19:30</strong>
-                </article>
-            </section>
-
-            <section class="tasks-architect-grid tasks-architect-grid-account">
-                <article class="tasks-architect-panel">
-                    <div class="tasks-architect-panel-head">
-                        <span>Lookup</span>
-                        <strong>Riot Account</strong>
-                    </div>
-
-                    <form class="tasks-account-form" action="/tasks" method="GET">
-                        <div class="tasks-account-field">
-                            <label for="gameName" class="tasks-account-label">Riot ID</label>
-                            <input id="gameName" name="gameName" type="text" class="form-control tasks-account-input" value="<%= gameName || '' %>" placeholder="PlayerName" required>
-                        </div>
-                        <div class="tasks-account-field">
-                            <label for="tagLine" class="tasks-account-label">Tag</label>
-                            <input id="tagLine" name="tagLine" type="text" class="form-control tasks-account-input" value="<%= tagLine || '' %>" placeholder="TagLine" required>
-                        </div>
-                        <button type="submit" class="btn tasks-architect-button is-primary">Search</button>
-                    </form>
-                </article>
-
-                <article class="tasks-architect-panel tasks-architect-panel-wide">
-                    <div class="tasks-architect-panel-head">
-                        <span>Result</span>
-                        <strong>Account Preview</strong>
-                    </div>
-
-                    <% if (error) { %>
-                        <div class="tasks-account-preview">
-                            <div class="tasks-account-detail">
-                                <span>Error</span>
-                                <strong><%= error %></strong>
-                            </div>
-                            <% if (rawJsonText) { %>
-                                <div class="tasks-account-json">
-                                    <span class="tasks-account-json-label">Raw JSON</span>
-                                    <pre class="tasks-account-json-body"><%= rawJsonText %></pre>
-                                </div>
-                            <% } %>
-                        </div>
-                    <% } else if (account) { %>
-                        <div class="tasks-account-preview">
-                            <div class="tasks-account-card">
-                                <div class="tasks-account-card-media">
-                                    <% if (cardImage) { %>
-                                        <img src="<%= cardImage %>" alt="Player card preview" class="tasks-account-card-image">
-                                    <% } else { %>
-                                        <div class="tasks-account-card-image"></div>
-                                    <% } %>
-                                </div>
-                                <div class="tasks-account-card-body">
-                                    <p class="tasks-account-caption">Account</p>
-                                    <h2 class="tasks-account-name"><%= account.name || gameName %></h2>
-                                    <p class="tasks-account-tag">#<%= account.tag || tagLine %></p>
-                                    <div class="tasks-account-meta">
-                                        <div><span>Region</span><strong><%= account.region || "-" %></strong></div>
-                                        <div><span>Level</span><strong><%= account.account_level ?? "-" %></strong></div>
-                                        <div><span>Updated</span><strong><%= account.last_update || "-" %></strong></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tasks-account-details">
-                                <div class="tasks-account-detail">
-                                    <span>PUUID</span>
-                                    <strong><%= account.puuid || "-" %></strong>
-                                </div>
-                                <div class="tasks-account-detail">
-                                    <span>last_update_raw</span>
-                                    <strong><%= account.last_update_raw ?? "-" %></strong>
-                                </div>
-                            </div>
-
-                            <div class="tasks-account-json">
-                                <span class="tasks-account-json-label">Raw JSON</span>
-                                <pre class="tasks-account-json-body"><%= rawJsonText %></pre>
-                            </div>
-                        </div>
-                    <% } else { %>
-                        <div class="tasks-account-preview">
-                            <div class="tasks-account-detail">
-                                <span>Ready</span>
-                                <strong>Enter Riot ID and Tag to show the account result here.</strong>
-                            </div>
-                        </div>
-                    <% } %>
-                </article>
-            </section>
-
-            <section class="tasks-architect-grid">
-                <article class="tasks-architect-panel tasks-architect-panel-wide">
-                    <div class="tasks-architect-panel-head">
-                        <span>01</span>
-                        <strong>Current Workflow</strong>
-                    </div>
-                    <div class="tasks-architect-list">
-                        <div class="tasks-architect-item">
-                            <strong>Availability Check</strong>
-                            <p>Use the search panel to pull an account snapshot and inspect the response.</p>
-                        </div>
-                        <div class="tasks-architect-item">
-                            <strong>Role Assignment</strong>
-                            <p>Keep the account card visible while comparing region, level, and update time.</p>
-                        </div>
-                        <div class="tasks-architect-item">
-                            <strong>Task Queue Review</strong>
-                            <p>Use the raw JSON panel when you need fields that are not shown in the summary card.</p>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="tasks-architect-panel">
-                    <div class="tasks-architect-panel-head">
-                        <span>02</span>
-                        <strong>Status</strong>
-                    </div>
-                    <div class="tasks-architect-stack">
-                        <div class="tasks-architect-row"><span>Lineup</span><strong>Ready</strong></div>
-                        <div class="tasks-architect-row"><span>Roles</span><strong>Stable</strong></div>
-                        <div class="tasks-architect-row"><span>Maps</span><strong>Updating</strong></div>
-                    </div>
-                </article>
-
-                <article class="tasks-architect-panel">
-                    <div class="tasks-architect-panel-head">
-                        <span>03</span>
-                        <strong>Sections</strong>
-                    </div>
-                    <div class="tasks-architect-sections">
-                        <div>Availability Board</div>
-                        <div>Role Management</div>
-                        <div>Task Queue</div>
-                        <div>Session Notes</div>
-                    </div>
-                </article>
             </section>
         </section>
     </div>

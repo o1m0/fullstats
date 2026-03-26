@@ -1,29 +1,32 @@
 <header class="site-header">
-    <div class="site-navbar">
-        <div class="container site-container site-header-inner">
-            <a class="site-brand" href="/">
+    <nav class="navbar navbar-expand-lg navbar-light site-navbar">
+        <div class="container site-container">
+            <a class="navbar-brand site-brand" href="/">
                 <span class="brand-logo">FS</span>
-                <span class="brand-copy">
-                    <strong>FullStats</strong>
-                    <small>Team Control Panel</small>
-                </span>
+                <span class="brand-copy">FullStats</span>
             </a>
 
-            <nav class="site-primary-nav" aria-label="Primary">
-                <a class="site-nav-link" href="/">ホーム</a>
-                <a class="site-nav-link" href="/tasks">タスク</a>
-            </nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavMenu" aria-controls="siteNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <div class="site-header-actions">
-                <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
-                    <form action="/logout" method="POST" class="nav-auth-form">
-                        <button type="submit" class="btn site-login-btn">ログアウト</button>
-                    </form>
-                <% } else { %>
-                    <a href="/login" class="btn site-login-btn">ログイン</a>
-                    <a href="/register" class="btn site-register-btn">新規登録</a>
-                <% } %>
+            <div class="collapse navbar-collapse" id="siteNavMenu">
+                <div class="navbar-nav me-auto mb-3 mb-lg-0">
+                    <a class="nav-link site-nav-link" href="/">Home</a>
+                    <a class="nav-link site-nav-link" href="/tasks">Tasks</a>
+                </div>
+
+                <div class="d-flex flex-column flex-lg-row gap-2">
+                    <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn) { %>
+                        <form action="/logout" method="POST" class="m-0">
+                            <button type="submit" class="btn btn-dark site-button">Logout</button>
+                        </form>
+                    <% } else { %>
+                        <a href="/login" class="btn btn-outline-secondary site-button">Login</a>
+                        <a href="/register" class="btn btn-dark site-button">Register</a>
+                    <% } %>
+                </div>
             </div>
         </div>
-    </div>
+    </nav>
 </header>
